@@ -1,0 +1,19 @@
+<form class="ui form">
+  <div class="field">
+    <label>Name</label>
+		<input type="text" [(ngModel)]="task.name" placeholder="Name" name="name">
+	</div>
+  <div class="field">
+    <label>Description</label>
+		<input type="text" [(ngModel)]="task.description" placeholder="Description" name="description">
+	</div>
+  <div class="field">
+    <label>Contract</label>
+		<input type="number" [(ngModel)]="task.contractId" placeholder="Contract" name="contractId">
+	</div>
+  <div class="field">
+    <label>Status</label>
+		<input type="number" [(ngModel)]="task.status" placeholder="Status" name="status">
+	</div>
+  <button class="ui button" (click)="saveTask()">Save</button>
+</form>

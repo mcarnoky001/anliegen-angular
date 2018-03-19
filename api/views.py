@@ -10,7 +10,6 @@ from .permissions import IsOwnerOrReadOnly
 class TaskAPIView(mixins.CreateModelMixin, generics.ListAPIView):
     lookup_field        = 'pk'
     serializer_class    = TaskSerializer
-
     def get_queryset(self):
         qs = Task.objects.all()
         query = self.request.GET.get("q")
@@ -25,6 +24,7 @@ class TaskAPIView(mixins.CreateModelMixin, generics.ListAPIView):
     #     serializer.save(user=self.request.user)
 
     def post(self, request, *args, **kwargs):
+        print(request.data)
         return self.create(request, *args, **kwargs)
 
 class TaskRudView(generics.RetrieveUpdateDestroyAPIView):

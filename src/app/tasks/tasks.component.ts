@@ -1,38 +1,36 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { STATUS } from '../enums/status.enum';
 import { Task } from '../models/task.model';
-import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
+import { TaskService } from '../task.service';
 
 @Component({
   selector: 'app-tasks',
   templateUrl: './tasks.component.html',
-  styleUrls: ['./tasks.component.css']
+  styleUrls: ['./tasks.component.css'],
+  providers: [TaskService]
 })
 export class TasksComponent implements OnInit {
 
-  readonly ROOT_URL = 'http://localhost:8000';
+  searchQuery: String = '';
 
-  constructor(private http: HttpClient) { }
+  constructor(private taskService: TaskService) { }
 
   ngOnInit() {
-
+    this.getTasks();
   }
 
-  tasks: any;
+  tasks: Observable<any>;
 
-  getTasks() {
-    this.tasks = this.http.get(this.ROOT_URL + '/tasks')
+  getTasks(): void {
+    this.tasks = this.taskService.getTasks(this.searchQuery);
   }
 
-  //
-  // tasks = [
-  //   new Task('Vendor service metrics','Vendor service metrics', 77541,1),
-  //   new Task('Vendor service metrics','Vendor service metrics', 77541,2),
-  //   new Task('Vendor service metrics','Vendor service metrics', 77541,0),
-  //   new Task('Vendor service metrics','Vendor service metrics', 77541,2),
-  //   new Task('Vendor service metrics','Vendor service metrics', 77541,0),
-  //   new Task('Vendor service metrics','Vendor service metrics', 77541,1)
-  // ]
+  deleteTask(id: number): void {
+    console.log(id);
+    this.taskService.deleteTask(id)
+      .subscribe(res => this.getTasks());
+  }
 
 
 }

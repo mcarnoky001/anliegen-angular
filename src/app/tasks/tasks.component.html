@@ -1,9 +1,26 @@
+
+<div class="ui menu">
+  <div class="item right">
+  	<a routerLink="/newtask">
+			<div class="ui primary button">New Task</div>
+		</a>
+	</div>
+</div>
+
+<form class="ui form">
+  <div class="field">
+    <label>Search</label>
+		<input type="text" [(ngModel)]="searchQuery" placeholder="Search" name="search">
+	</div>
+</form>
+
 <table class="ui celled striped table">
 <thead>
 	<tr><th class="single line">Name</th>
 	<th>Description</th>
 	<th>Contract</th>
 	<th>Status</th>
+	<th>Actions</th>
 </tr></thead>
 <tbody>
 	<tr *ngFor="let task of tasks | async">
@@ -16,11 +33,14 @@
 		<td>
 			{{ task.contractId }}
 		</td>
-		<td class="right aligned">
+		<td>
 			{{ task.status }}
+		</td>
+		<td class="right aligned">
+			<div class="ui button small" (click)="deleteTask(task.pk)">Delete</div>
 		</td>
 	</tr>
 </tbody>
 </table>
 
-<button (click)="getTasks()">Get Tasks</button>
+<button class="ui button" (click)="getTasks()">Get Tasks</button>
