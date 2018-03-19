@@ -23,15 +23,7 @@ export class NewTaskComponent implements OnInit {
   }
 
   saveTask() {
-    const data = {
-      pk: this.task.pk,
-      name: this.task.name,
-      user: this.task.user,
-      description: this.task.description,
-      contractId: this.task.contractId,
-      status: this.task.status
-    };
-    this.taskService.saveTask(data)
+    this.taskService.saveTask(this.task)
       .subscribe(res => this.router.navigate(['/']));;
   }
 }

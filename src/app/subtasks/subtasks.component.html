@@ -1,0 +1,117 @@
+
+<div class="ui menu">
+	<div class="item header">
+		<h2>Subtasks</h2>
+	</div>
+  <div class="item right">
+		<div class="ui primary button" (click)="newSubtask()"><i class="plus icon"></i>New Subtask</div>
+	</div>
+</div>
+
+<form class="ui form">
+  <div class="field">
+    <label>Search</label>
+		<input type="text" [(ngModel)]="searchQuery" placeholder="Search" name="search">
+	</div>
+</form>
+
+<table class="ui celled striped table">
+<thead>
+	<tr><th class="single line">Name</th>
+	<th>Description</th>
+	<th>User</th>
+	<th>Status</th>
+  <th>Task</th>
+	<th>Actions</th>
+</tr></thead>
+<tbody>
+	<tr *ngFor="let subtask of subtasks | async">
+		<td>
+			{{ subtask.name }}
+		</td>
+		<td class="single line">
+			{{ subtask.description }}
+		</td>
+		<td>
+			{{ subtask.user }}
+		</td>
+		<td>
+			{{ subtask.status }}
+		</td>
+    <td>
+			{{ subtask.task }}
+		</td>
+		<td class="right aligned">
+			<div class="ui button small" (click)="editSubtask(subtask)"><i class="pencil alternate icon"></i>Edit</div>
+			<div class="ui red button small" (click)="deleteSubtask(subtask.pk)"><i class="trash alternate icon"></i>Delete</div>
+		</td>
+	</tr>
+</tbody>
+</table>
+
+<button class="ui teal button" (click)="getSubtasks()"><i class="download icon"></i>Get Subtasks</button>
+
+
+<div class="ui modal edit">
+  <div class="header">Edit Subtask</div>
+  <div *ngIf="currentSubtask" class="content">
+		<form class="ui form">
+		  <div class="field">
+		    <label>Name</label>
+				<input type="text" [(ngModel)]="currentSubtask.name" placeholder="Name" name="name">
+			</div>
+		  <div class="field">
+		    <label>Description</label>
+				<input type="text" [(ngModel)]="currentSubtask.description" placeholder="Description" name="description">
+			</div>
+		  <div class="field">
+		    <label>User</label>
+				<input type="number" [(ngModel)]="currentSubtask.user" placeholder="User" name="user">
+			</div>
+		  <div class="field">
+		    <label>Status</label>
+				<input type="number" [(ngModel)]="currentSubtask.status" placeholder="Status" name="status">
+			</div>
+      <div class="field">
+		    <label>Task</label>
+				<input type="number" [(ngModel)]="currentSubtask.task" placeholder="Task" name="task">
+			</div>
+		</form>
+  </div>
+  <div class="actions">
+		<button class="ui primary approve button" (click)="updateSubtask(currentSubtask)">Save</button>
+    <div class="ui cancel button">Cancel</div>
+  </div>
+</div>
+
+<div class="ui modal new">
+  <div class="header">New Subtask</div>
+  <div *ngIf="currentSubtask" class="content">
+		<form class="ui form">
+		  <div class="field">
+		    <label>Name</label>
+				<input type="text" [(ngModel)]="currentSubtask.name" placeholder="Name" name="name">
+			</div>
+		  <div class="field">
+		    <label>Description</label>
+				<input type="text" [(ngModel)]="currentSubtask.description" placeholder="Description" name="description">
+			</div>
+		  <div class="field">
+		    <label>User</label>
+				<input type="number" [(ngModel)]="currentSubtask.user" placeholder="User" name="user">
+			</div>
+		  <div class="field">
+		    <label>Status</label>
+				<input type="number" [(ngModel)]="currentSubtask.status" placeholder="Status" name="status">
+			</div>
+      <div class="field">
+		    <label>Task</label>
+				<input type="number" [(ngModel)]="currentSubtask.task" placeholder="Task" name="task">
+			</div>
+		</form>
+  </div>
+  <div class="actions">
+		<button class="ui primary approve button" (click)="saveSubtask(currentSubtask)">Save</button>
+    <div class="ui cancel button">Cancel</div>
+  </div>
+</div>

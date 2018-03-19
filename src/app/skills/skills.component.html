@@ -1,0 +1,69 @@
+
+<div class="ui menu">
+	<div class="item header">
+		<h2>Skills</h2>
+	</div>
+  <div class="item right">
+		<div class="ui primary button" (click)="newSkill()"><i class="plus icon"></i>New Skill</div>
+	</div>
+</div>
+
+<form class="ui form">
+  <div class="field">
+    <label>Search</label>
+		<input type="text" [(ngModel)]="searchQuery" placeholder="Search" name="search">
+	</div>
+</form>
+
+<table class="ui celled striped table">
+<thead>
+	<tr><th class="single line">Name</th>
+	<th>Actions</th>
+</tr></thead>
+<tbody>
+	<tr *ngFor="let skill of skills | async">
+		<td>
+			{{ skill.name }}
+		</td>
+		<td class="right aligned">
+			<div class="ui button small" (click)="editSkill(skill)"><i class="pencil alternate icon"></i>Edit</div>
+			<div class="ui red button small" (click)="deleteSkill(skill.pk)"><i class="trash alternate icon"></i>Delete</div>
+		</td>
+	</tr>
+</tbody>
+</table>
+
+<button class="ui teal button" (click)="getSkills()"><i class="download icon"></i>Get Skills</button>
+
+
+<div class="ui modal edit">
+  <div class="header">Edit Skills</div>
+  <div *ngIf="currentSkill" class="content">
+		<form class="ui form">
+		  <div class="field">
+		    <label>Name</label>
+				<input type="text" [(ngModel)]="currentSkill.name" placeholder="Name" name="name">
+			</div>
+		</form>
+  </div>
+  <div class="actions">
+		<button class="ui primary approve button" (click)="updateSkill(currentSkill)">Save</button>
+    <div class="ui cancel button">Cancel</div>
+  </div>
+</div>
+
+<div class="ui modal new">
+  <div class="header">New Skill</div>
+  <div *ngIf="currentSkill" class="content">
+		<form class="ui form">
+		  <div class="field">
+		    <label>Name</label>
+				<input type="text" [(ngModel)]="currentSkill.name" placeholder="Name" name="name">
+			</div>
+		</form>
+  </div>
+  <div class="actions">
+		<button class="ui primary approve button" (click)="saveSkill(currentSkill)">Save</button>
+    <div class="ui cancel button">Cancel</div>
+  </div>
+</div>

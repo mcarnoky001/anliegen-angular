@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { STATUS } from '../enums/status.enum';
 import { Task } from '../models/task.model';
 import { Observable } from 'rxjs/Observable';
 import { TaskService } from '../task.service';
@@ -28,13 +27,11 @@ export class TasksComponent implements OnInit {
   }
 
   deleteTask(id: number): void {
-    console.log(id);
     this.taskService.deleteTask(id)
       .subscribe(res => this.getTasks());
   }
 
   updateTask(task):void {
-    console.log(task);
     this.taskService.updateTask(task)
       .subscribe(res => this.getTasks());
   }

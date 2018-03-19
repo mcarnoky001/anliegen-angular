@@ -8,10 +8,15 @@ import { RouterModule, Routes } from '@angular/router';
 import { MainContentComponent } from './main-content/main-content.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NewTaskComponent } from './tasks/new-task/new-task.component';
+import { SubtasksComponent } from './subtasks/subtasks.component';
+import { SkillsComponent } from './skills/skills.component';
 
 const appRoutes: Routes = [
   { path: '', component: TasksComponent },
+  { path: 'subtasks', component: SubtasksComponent },
+  { path: 'skills', component: SkillsComponent },
   { path: 'newtask', component: NewTaskComponent },
+
 ];
 
 @NgModule({
@@ -24,7 +29,7 @@ const appRoutes: Routes = [
       FormsModule,
       HttpClientModule
     ],
-  declarations: [ AppComponent, TasksComponent, MainContentComponent, NewTaskComponent ],
+  declarations: [ AppComponent, TasksComponent, MainContentComponent, NewTaskComponent, SubtasksComponent, SkillsComponent ],
   bootstrap:    [ AppComponent ]
 })
 export class AppModule { }
