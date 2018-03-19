@@ -1,8 +1,11 @@
 
 <div class="ui menu">
+	<div class="item header">
+		<h2>Tasks</h2>
+	</div>
   <div class="item right">
   	<a routerLink="/newtask">
-			<div class="ui primary button">New Task</div>
+			<div class="ui primary button"><i class="plus icon"></i>New Task</div>
 		</a>
 	</div>
 </div>
@@ -37,14 +40,14 @@
 			{{ task.status }}
 		</td>
 		<td class="right aligned">
-			<div class="ui button small" (click)="editTask(task)">Edit</div>
-			<div class="ui button small" (click)="deleteTask(task.pk)">Delete</div>
+			<div class="ui button small" (click)="editTask(task)"><i class="pencil alternate icon"></i>Edit</div>
+			<div class="ui red button small" (click)="deleteTask(task.pk)"><i class="trash alternate icon"></i>Delete</div>
 		</td>
 	</tr>
 </tbody>
 </table>
 
-<button class="ui button" (click)="getTasks()">Get Tasks</button>
+<button class="ui teal button" (click)="getTasks()"><i class="download icon"></i>Get Tasks</button>
 
 
 <div class="ui modal">
@@ -70,7 +73,7 @@
 		</form>
   </div>
   <div class="actions">
-		<button class="ui approve button" (click)="updateTask(currentTask)">Save</button>
+		<button class="ui primary approve button" (click)="updateTask(currentTask)">Save</button>
     <div class="ui cancel button">Cancel</div>
   </div>
 </div>

@@ -34,9 +34,9 @@ export class TasksComponent implements OnInit {
   }
 
   updateTask(task):void {
-    this.taskService.updateTask(task);
-    $('.ui.modal')
-      .modal('cancel');
+    console.log(task);
+    this.taskService.updateTask(task)
+      .subscribe(res => this.getTasks());
   }
 
   editTask(task): void {

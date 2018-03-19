@@ -33,8 +33,7 @@ export class TaskService {
   }
 
   updateTask(data: Task) {
-    console.log(data);
-    const url = `${this.ROOT_URL}/${1}/`;
+    const url = `${this.ROOT_URL}/${data.pk}/`;
     return this.http.put(url, data, httpOptions);
   }
 

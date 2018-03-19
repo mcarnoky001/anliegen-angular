@@ -12,7 +12,7 @@ import { TaskService } from '../../task.service';
 })
 export class NewTaskComponent implements OnInit {
 
-  task: Task = new Task('The new task', 1,'Created from angular client',57381,2);
+  task: Task = new Task(0,'The new task', 1,'Created from angular client',57381,2);
 
   constructor(
     private router: Router,
@@ -24,9 +24,9 @@ export class NewTaskComponent implements OnInit {
 
   saveTask() {
     const data = {
-      id: null,
+      pk: this.task.pk,
       name: this.task.name,
-      user: 1,
+      user: this.task.user,
       description: this.task.description,
       contractId: this.task.contractId,
       status: this.task.status

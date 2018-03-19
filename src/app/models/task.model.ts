@@ -1,5 +1,5 @@
 export class Task {
-
+  pk;
   name;
   user;
   description;
@@ -7,12 +7,14 @@ export class Task {
   status;
 
   constructor(
+    pk,
     name,
     user,
     description,
     contractId,
     status
   ) {
+    this.pk = pk;
     this.name = name;
     this.user = user;
     this.description = description;
