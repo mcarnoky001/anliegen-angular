@@ -6,7 +6,7 @@ from rest_framework.reverse import reverse as api_reverse
 
 class Task(models.Model):
     name = models.CharField(max_length=200)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True, null=True)
     description = models.TextField()
     contractId = models.IntegerField()
     status = models.IntegerField()
@@ -18,5 +18,30 @@ class Task(models.Model):
     def owner(self):
         return self.user
 
-    # def get_api_url(self, request=None):
-    #     return api_reverse("api_tasks:task-rud", kwargs={'pk': self.pk}, request=request)
+
+class Subtask(models.Model):
+    name = models.CharField(max_length=200)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True, null=True)
+    description = models.TextField()
+    task = models.ForeignKey(Task, on_delete=models.CASCADE)
+    status = models.IntegerField()
+
+    def __str__(self):
+        return self.name
+
+
+class Skill(models.Model):
+    name = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.name
+
+
+class SubtaskSkill(models.Model):
+    subtask = models.ForeignKey(Subtask, on_delete=models.CASCADE)
+    skill = models.ForeignKey(Skill, on_delete=models.CASCADE)
+
+
+class UserSkill(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    skill = models.ForeignKey(Skill, on_delete=models.CASCADE)

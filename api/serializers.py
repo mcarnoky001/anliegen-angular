@@ -1,14 +1,12 @@
 from rest_framework import serializers
 
-from .models import Task
+from .models import Task, Subtask
 
 
 class TaskSerializer(serializers.ModelSerializer):
-    # url         = serializers.SerializerMethodField(read_only=True)
     class Meta:
         model = Task
         fields = [
-            # 'url',
             'pk',
             'name',
             'user',
@@ -16,12 +14,18 @@ class TaskSerializer(serializers.ModelSerializer):
             'contractId',
             'status',
         ]
-        read_only_fields = ['id']
+        read_only_fields = ['pk']
 
-    # converts to JSON
-    # validations for data passed
 
-    # def get_url(self, obj):
-    #     # request
-    #     request = self.context.get("request")
-    #     return obj.get_api_url(request=request)
+class SubtaskSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Subtask
+        fields = [
+            'pk',
+            'name',
+            'user',
+            'description',
+            'task',
+            'status',
+        ]
+        read_only_fields = ['pk']

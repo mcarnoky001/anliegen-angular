@@ -23,7 +23,7 @@ INSTALLED_APPS = [
     'rest_framework',
 ]
 
-CORS_ORIGIN_ALLOW_ALL = True  
+CORS_ORIGIN_ALLOW_ALL = True
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -96,6 +96,7 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'dist'),
     os.path.join(BASE_DIR, 'static'),

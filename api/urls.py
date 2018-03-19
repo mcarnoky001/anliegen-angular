@@ -4,4 +4,6 @@ from . import views
 urlpatterns = [
     re_path(r'^tasks/(?P<pk>\d+)/$', views.TaskRudView.as_view(), name='task_rud'),
     path('tasks/', views.TaskAPIView.as_view(), name='task_api'),
+    path('subtasks/', views.SubTaskAPIView.as_view(), name='subtask_api'),
+
 ]
