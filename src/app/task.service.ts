@@ -32,4 +32,10 @@ export class TaskService {
     return this.http.delete(url, httpOptions);
   }
 
+  updateTask(data: Task) {
+    console.log(data);
+    const url = `${this.ROOT_URL}/${1}/`;
+    return this.http.put(url, data, httpOptions);
+  }
+
 }

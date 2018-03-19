@@ -3,6 +3,7 @@ import { STATUS } from '../enums/status.enum';
 import { Task } from '../models/task.model';
 import { Observable } from 'rxjs/Observable';
 import { TaskService } from '../task.service';
+declare var $:any;
 
 @Component({
   selector: 'app-tasks',
@@ -19,7 +20,7 @@ export class TasksComponent implements OnInit {
   ngOnInit() {
     this.getTasks();
   }
-
+  currentTask: Task;
   tasks: Observable<any>;
 
   getTasks(): void {
@@ -30,6 +31,18 @@ export class TasksComponent implements OnInit {
     console.log(id);
     this.taskService.deleteTask(id)
       .subscribe(res => this.getTasks());
+  }
+
+  updateTask(task):void {
+    this.taskService.updateTask(task);
+    $('.ui.modal')
+      .modal('cancel');
+  }
+
+  editTask(task): void {
+    this.currentTask = task;
+    $('.ui.modal')
+      .modal('show');
   }
 
 
