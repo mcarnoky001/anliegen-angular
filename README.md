@@ -30,13 +30,14 @@ Run `ng github-pages:deploy` to deploy to GitHub Pages.
 
 To get more help on the `angular-cli` use `ng help` or go check out the [Angular-CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
-## For Majo
+## Instalation
 
-first run `npm install`, then `ng serve` to start webpack server for angular dev
+* run `npm install` from within the cloned folder (if you do not have npm install node.js)
+* run `ng serve` this starts webpack server for angular dev
+* in another cmd run `pip install -r requirements.txt` from within the cloned folder
+* run `python manage.py runserver` this starts the server for django
 
-At the same time run another cmd with `python manage.py runserver`
+  * at `localhost:8000/admin` -  username: su password: Python123 - you can edit database
+  * api is separate django app in folder `api`
 
-api is separate django app in folder `api`
 
-at `localhost:8000/admin` -  username: su password: Python123
-you can edit database
