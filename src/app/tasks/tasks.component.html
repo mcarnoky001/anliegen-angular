@@ -19,7 +19,9 @@
 
 <table class="ui celled striped table">
 <thead>
-	<tr><th class="single line">Name</th>
+	<tr>
+	<th>Id</th>
+	<th class="single line">Name</th>
 	<th>Description</th>
 	<th>Contract</th>
 	<th>Status</th>
@@ -27,6 +29,9 @@
 </tr></thead>
 <tbody>
 	<tr *ngFor="let task of tasks | async">
+		<td>
+			{{ task.pk }}
+		</td>
 		<td>
 			{{ task.name }}
 		</td>

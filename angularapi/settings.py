@@ -4,7 +4,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'y9(r1y2j*3k#3j8m72ilrn$k0*gv8i@twghoktg4o5fmbs0jc4'
 DEBUG = True
 
-CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = False # TODO: change to true before production
 
 ALLOWED_HOSTS = [
     'localhost'

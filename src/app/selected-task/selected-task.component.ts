@@ -55,4 +55,11 @@ export class SelectedTaskComponent implements OnInit {
     this.getSubtasks();
   }
 
+  resolveSubtask(subtask) {
+    subtask.status = 1;
+    this.subtaskService.updateSubtask(subtask)
+      .subscribe(res => {});
+    this.getSubtasks();
+  }
+
 }

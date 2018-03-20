@@ -21,8 +21,9 @@
   			{{ subtask.name }}
   		</td>
   		<td class="right aligned">
-  			<div class="ui button small" (click)="editSkill(subtask)"><i class="pencil alternate icon"></i>Edit</div>
-  			<div class="ui red button small" (click)="deleteSkill(subtask.pk)"><i class="trash alternate icon"></i>Delete</div>
+  			<div class="ui green button small" (click)="resolveSubtask(subtask)" [ngClass]="{'disabled': subtask.status===1}">
+					<i class="check icon"></i>Resolve
+				</div>
   		</td>
   	</tr>
   </tbody>
@@ -55,7 +56,7 @@
     			{{ task.status }}
     		</td>
     		<td class="right aligned">
-    			<div class="ui approve button" (click)="applySelectedTask(task)"><i class="search icon"></i>Select</div>
+    			<div class="ui approve button" (click)="applySelectedTask(task)"><i class="caret right icon"></i>Select</div>
     		</td>
     	</tr>
     </tbody>

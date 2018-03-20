@@ -70,7 +70,11 @@
 			</div>
 		  <div class="field">
 		    <label>Status</label>
-				<input type="number" [(ngModel)]="currentSubtask.status" placeholder="Status" name="status">
+				  <select type="hidden" class="dropdown" name="status" [(ngModel)]="currentSubtask.status" placeholder="Status">
+				    <option value="1">1</option>
+				    <option value="0">0</option>
+				 	</select>
+
 			</div>
       <div class="field">
 		    <label>Task</label>
