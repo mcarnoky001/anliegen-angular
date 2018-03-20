@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+declare var $:any;
 
 @Component({
   selector: 'my-app',
@@ -8,4 +9,10 @@ import { Component } from '@angular/core';
 export class AppComponent  {
   name = 'Angular 5';
   text = 'This is text before click.';
+
+  ngOnInit() {
+    $('.ui.dropdown')
+      .dropdown()
+    ;
+  }
 }

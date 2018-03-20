@@ -1,12 +1,29 @@
-<div class="ui left fixed vertical menu">
-  <div class="item">
-    <div class="header"><h2>Tasks app</h2></div>
-    <div class="menu">
-      <a class="item" routerLink=""><h3>Tasks</h3></a>
-      <a class="item" routerLink="subtasks"><h3>Subtasks</h3></a>
-      <a class="item" routerLink="skills"><h3>Skills</h3></a>
-      <a class="item" routerLink="selectedtask"><h3>Selected Task</h3></a>
+<nav class="ui borderless menu">
+  <div class="ui container">
+    <img src="./assets/img/allianz_logo.jpg" alt="logo" class="ui image logo">
+    <a class="brand item" routerLink=""></a>
+    <a class="item" routerLink="">Current Task</a>
+    <a class="item" routerLink="">Completed Tasks</a>
+    <a class="ui dropdown item" tabindex="0">Management<i class="dropdown icon"></i>
+      <div class="menu transition hidden" tabindex="-1">
+        <a class="item" routerLink="">Skills</a>
+        <a class="item" routerLink="">Users</a>
+        <a class="item" routerLink="">Tasks</a>
+      </div>
+    </a>
+    <div class="right menu">
+      <a class="item"><i class="logout icon"></i></a>
+      <a class="ui dropdown item" tabindex="0">Administration<i class="dropdown icon"></i>
+        <div class="menu transition hidden" tabindex="-1">
+          <a class="item" routerLink="">Tasks</a>
+          <a class="item" routerLink="subtasks">Subtasks</a>
+          <a class="item" routerLink="skills">Skills</a>
+          <a class="item" routerLink="selectedtask">Selected Task</a>
+        </div>
+      </a>
+      <a class="item"><i class="power off icon"></i></a>
     </div>
   </div>
-</div>
+</nav>
+
 <app-main-content></app-main-content>
