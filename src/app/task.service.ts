@@ -23,8 +23,13 @@ export class TaskService {
     }
   }
 
-  getTasks(searchQuery: String): Observable<{}> {
+  getTasks(searchQuery: String): Observable<any> {
     return this.http.get(this.ROOT_URL + '?q=' + searchQuery);
+  }
+
+  getTask(id: number): Observable<any> {
+    const url = `${this.ROOT_URL}/${id}`;
+    return this.http.get(url, httpOptions);
   }
 
   deleteTask(id: number): Observable<{}> {
