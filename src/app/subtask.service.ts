@@ -27,6 +27,10 @@ export class SubtaskService {
     return this.http.get(this.ROOT_URL + '?q=' + searchQuery);
   }
 
+  getSubtaskByTaskId(id: number): Observable<any> {
+    return this.http.get(`${this.ROOT_URL}?id=${id}`);
+  }
+
   deleteSubtask(id: number): Observable<{}> {
     const url = `${this.ROOT_URL}/${id}`;
     return this.http.delete(url, httpOptions);

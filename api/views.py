@@ -36,11 +36,14 @@ class SubTaskAPIView(mixins.CreateModelMixin, generics.ListAPIView):
     def get_queryset(self):
         qs = Subtask.objects.all()
         query = self.request.GET.get("q")
+        taskId = self.request.GET.get("id")
         if(query) is not None:
             qs = qs.filter(
                     Q(name__icontains=query)|
                     Q(description__icontains=query)
                     ).distinct()
+        if(taskId) is not None:
+            qs = qs.filter(Q(task=taskId))
         return qs
 
     def post(self, request, *args, **kwargs):

@@ -10,13 +10,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { NewTaskComponent } from './tasks/new-task/new-task.component';
 import { SubtasksComponent } from './subtasks/subtasks.component';
 import { SkillsComponent } from './skills/skills.component';
+import { SelectedTaskComponent } from './selected-task/selected-task.component';
 
 const appRoutes: Routes = [
   { path: '', component: TasksComponent },
   { path: 'subtasks', component: SubtasksComponent },
   { path: 'skills', component: SkillsComponent },
   { path: 'newtask', component: NewTaskComponent },
-
+  { path: 'selectedtask', component: SelectedTaskComponent },
 ];
 
 @NgModule({
@@ -29,7 +30,7 @@ const appRoutes: Routes = [
       FormsModule,
       HttpClientModule
     ],
-  declarations: [ AppComponent, TasksComponent, MainContentComponent, NewTaskComponent, SubtasksComponent, SkillsComponent ],
+  declarations: [ AppComponent, TasksComponent, MainContentComponent, NewTaskComponent, SubtasksComponent, SkillsComponent, SelectedTaskComponent ],
   bootstrap:    [ AppComponent ]
 })
 export class AppModule { }
