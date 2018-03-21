@@ -11,13 +11,20 @@ import { NewTaskComponent } from './tasks/new-task/new-task.component';
 import { SubtasksComponent } from './subtasks/subtasks.component';
 import { SkillsComponent } from './skills/skills.component';
 import { SelectedTaskComponent } from './selected-task/selected-task.component';
+import { AuthGuard } from './auth-guard.service';
+import { AuthService } from './auth.service';
+import { LoginComponent } from './login/login.component';
+import { MainMenuComponent } from './main-menu/main-menu.component';
 
 const appRoutes: Routes = [
-  { path: '', component: TasksComponent },
-  { path: 'subtasks', component: SubtasksComponent },
-  { path: 'skills', component: SkillsComponent },
-  { path: 'newtask', component: NewTaskComponent },
-  { path: 'selectedtask', component: SelectedTaskComponent },
+  { path: 'login', component: LoginComponent },
+  { path: '', component: SelectedTaskComponent, canActivate: [AuthGuard] },
+  { path: 'home', component: SelectedTaskComponent, canActivate: [AuthGuard] },
+  { path: 'tasks', component: TasksComponent, canActivate: [AuthGuard] },
+  { path: 'subtasks', component: SubtasksComponent, canActivate: [AuthGuard] },
+  { path: 'skills', component: SkillsComponent, canActivate: [AuthGuard] },
+  { path: 'newtask', component: NewTaskComponent, canActivate: [AuthGuard] },
+  { path: 'selectedtask', component: SelectedTaskComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({
@@ -28,9 +35,20 @@ const appRoutes: Routes = [
       ),
       BrowserModule,
       FormsModule,
-      HttpClientModule
+      HttpClientModule,
     ],
-  declarations: [ AppComponent, TasksComponent, MainContentComponent, NewTaskComponent, SubtasksComponent, SkillsComponent, SelectedTaskComponent ],
-  bootstrap:    [ AppComponent ]
+  declarations: [
+    AppComponent,
+    TasksComponent,
+    MainContentComponent,
+    NewTaskComponent,
+    SubtasksComponent,
+    SkillsComponent,
+    SelectedTaskComponent,
+    LoginComponent,
+    MainMenuComponent
+  ],
+  bootstrap:    [ AppComponent ],
+  providers: [AuthGuard, AuthService]
 })
 export class AppModule { }

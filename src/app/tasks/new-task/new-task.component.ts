@@ -24,6 +24,6 @@ export class NewTaskComponent implements OnInit {
 
   saveTask() {
     this.taskService.saveTask(this.task)
-      .subscribe(res => this.router.navigate(['/']));;
+      .subscribe(res => this.router.navigate(['/tasks']));;
   }
 }
