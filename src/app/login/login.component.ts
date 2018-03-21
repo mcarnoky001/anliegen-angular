@@ -9,7 +9,10 @@ import { AuthService } from '../auth.service';
   providers: [AuthService]
 })
 export class LoginComponent implements OnInit  {
-  message: string;
+    message: string;
+
+    username: string;
+    password: string;
 
     constructor(public authService: AuthService, public router: Router) {
       this.setMessage();
@@ -20,17 +23,14 @@ export class LoginComponent implements OnInit  {
     }
 
     login() {
-      this.message = 'Trying to log in ...';
-
-      this.authService.login().subscribe(() => {
-        this.setMessage();
-        if (this.authService.isLoggedIn) {
-          // Get the redirect URL from our auth service
-          // If no redirect has been set, use the default
-          let redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '';
-          // Redirect the user
-          this.router.navigate([redirect]);
-        }
+      this.authService.login(this.username, this.password)
+        .subscribe(res => {
+          localStorage.setItem('app-token', JSON.stringify(res));
+          localStorage.setItem('app-login', 'true');
+          if (this.authService.isLoggedIn) {
+            let redirect = this.authService.redirectUrl ? this.authService.redirectUrl : '';
+            this.router.navigate([redirect]);
+          }
       });
     }
 
