@@ -14,7 +14,7 @@ declare var $:any;
 })
 export class SelectedTaskComponent implements OnInit {
 
-  task: Task = new Task(1,'',0,'',0,0);
+  task: Task = new Task(1,'',0,'',0,0, '', '', '', '');
   tasks: Observable<any>;
   subtasks: Subtask[];
 

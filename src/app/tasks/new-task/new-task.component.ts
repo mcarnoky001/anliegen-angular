@@ -12,7 +12,7 @@ import { TaskService } from '../../task.service';
 })
 export class NewTaskComponent implements OnInit {
 
-  task: Task = new Task(0,'The new task', 1,'Created from angular client',57381,2);
+  task: Task = new Task(0,'The new task', 'description', 1,'Created from angular client', 2,'Blocker', 1,'Note', '2018-01-01');
 
   constructor(
     private router: Router,
