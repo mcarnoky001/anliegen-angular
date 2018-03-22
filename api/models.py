@@ -10,6 +10,10 @@ class Task(models.Model):
     description = models.TextField()
     contractId = models.IntegerField()
     status = models.IntegerField()
+    timeOfInit = models.DateTimeField()
+    noSubtasks = models.IntegerField()
+    blocker = models.CharField(max_length=200)
+    note = models.CharField(max_length=250)
 
     def __str__(self):
         return self.name

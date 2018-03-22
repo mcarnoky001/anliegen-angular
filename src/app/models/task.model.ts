@@ -5,6 +5,10 @@ export class Task {
   description;
   contractId;
   status;
+  timeOfInit;
+  noSubtasks;
+  blocker;
+  note;
 
   constructor(
     pk,
@@ -12,7 +16,11 @@ export class Task {
     user,
     description,
     contractId,
-    status
+    status,
+    timeOfInit;
+    noSubtasks;
+    blocker;
+    note;
   ) {
     this.pk = pk;
     this.name = name;
@@ -20,6 +28,10 @@ export class Task {
     this.description = description;
     this.contractId = contractId;
     this.status = status;
+    timeOfInit= timeOfInit;
+    noSubtasks= noSubtasks;
+    blocker= blocker;
+    note = note;
   }
 
 
