@@ -17,10 +17,10 @@ export class Task {
     description,
     contractId,
     status,
-    timeOfInit;
-    noSubtasks;
-    blocker;
-    note;
+    timeOfInit,
+    noSubtasks,
+    blocker,
+    note,
   ) {
     this.pk = pk;
     this.name = name;
