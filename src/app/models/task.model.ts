@@ -28,9 +28,9 @@ export class Task {
     this.description = description;
     this.contractId = contractId;
     this.status = status;
-    timeOfInit= timeOfInit;
-    noSubtasks= noSubtasks;
-    blocker= blocker;
+    timeOfInit = timeOfInit;
+    noSubtasks = noSubtasks;
+    blocker = blocker;
     note = note;
   }
 

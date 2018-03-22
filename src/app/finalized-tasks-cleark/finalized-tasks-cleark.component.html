@@ -1,33 +1,24 @@
 <table class="ui celled striped table">
 <thead>
 	<tr>
-	<th>Id</th>
-	<th class="single line">Name</th>
-	<th>Description</th>
-	<th>Contract</th>
+	<th>Contract Number</th>
+	<th>Number of Available Tasks</th>
 	<th>Status</th>
-	<th>Actions</th>
+	<th>Time of init</th>
 </tr></thead>
 <tbody>
 	<tr *ngFor="let task of tasks | async">
 		<td>
-			{{ task.pk }}
-		</td>
-		<td>
-			{{ task.name }}
-		</td>
-		<td class="single line">
-			{{ task.description }}
-		</td>
-		<td>
 			{{ task.contractId }}
+		</td>
+		<td>
+			{{ task.noSubtasks }}
 		</td>
 		<td>
 			{{ task.status }}
 		</td>
-		<td class="right aligned">
-			<div class="ui button small" (click)="editTask(task)"><i class="pencil alternate icon"></i>Edit</div>
-			<div class="ui red button small" (click)="deleteTask(task.pk)"><i class="trash alternate icon"></i>Delete</div>
+		<td>
+			{{ task.timeOfInit }}
 		</td>
 	</tr>
 </tbody>
