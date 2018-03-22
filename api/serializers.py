@@ -13,6 +13,10 @@ class TaskSerializer(serializers.ModelSerializer):
             'description',
             'contractId',
             'status',
+            'timeOfInit',
+            'noSubtasks',
+            'blocker',
+            'note',
         ]
         read_only_fields = ['pk']
 
