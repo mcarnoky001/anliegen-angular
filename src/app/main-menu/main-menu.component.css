@@ -1,4 +1,25 @@
 .ui.menu>.container>.logo {
-  width: 140px;
-  height: 65px;
+  width: calc(291px * 0.3);
+  height: calc(129px * 0.3);
+  margin: 0em 1.14285714em;
+  padding: 0px;
+}
+.ui.menu>.container {
+  margin: 0 10% 0 10% !important;
+  width: 100%;
+}
+.ui.menu {
+  margin: 0px;
+  border: 0px;
+  border-radius: 0px;
+}
+.gray_header {
+  background-color: rgb(235, 235,235);
+  height: 75px;
+}
+.blue_header {
+  background-color: rgb(17,51,136);
+}
+.blue_header .item {
+  color: white;
 }
