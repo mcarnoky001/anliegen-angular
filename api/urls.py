@@ -1,5 +1,6 @@
 from django.urls import path, include, re_path
 from . import views
+from rest_framework.authtoken import views as auth_views
 
 urlpatterns = [
     re_path(r'^tasks/(?P<pk>\d+)/$', views.TaskRudView.as_view(), name='task_rud'),
@@ -12,4 +13,8 @@ urlpatterns = [
     path('subtaskskills/', views.SubtaskSkillAPIView.as_view(), name='subtaskskill_api'),
     re_path(r'^userskills/(?P<pk>\d+)/$', views.UserSkillRudView.as_view(), name='userskill_rud'),
     path('userskills/', views.UserSkillAPIView.as_view(), name='userskill_api'),
+]
+
+urlpatterns += [
+    re_path(r'^api-token-auth/', auth_views.obtain_auth_token)
 ]
