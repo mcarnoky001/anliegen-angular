@@ -1,0 +1,7 @@
+.ui.celled.table tr td.selected {
+  background: #ddd;
+}
+
+.ui.celled.table tr td {
+  cursor: pointer;
+}

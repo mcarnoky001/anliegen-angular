@@ -6,10 +6,10 @@
 </tr></thead>
 <tbody>
 	<tr *ngFor="let task of tasks | async">
-		<td (click)="clickTableRow(task)">
+		<td (click)="clickTableRow(task)" [ngClass]="{ selected: currentTask === task }">
 			{{ task.contractId }}
 		</td>
-		<td>
+		<td (click)="clickTableRow(task)" [ngClass]="{ selected: currentTask === task }">
 			{{ task.noSubtasks }}
 		</td>
 	</tr>
