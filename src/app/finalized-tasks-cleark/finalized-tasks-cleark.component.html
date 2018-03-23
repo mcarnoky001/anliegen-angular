@@ -3,23 +3,16 @@
 	<tr>
 	<th>Contract Number</th>
 	<th>Number of Available Tasks</th>
-	<th>Status</th>
-	<th>Time of init</th>
 </tr></thead>
 <tbody>
 	<tr *ngFor="let task of tasks | async">
-		<td>
+		<td (click)="clickTableRow(task)">
 			{{ task.contractId }}
 		</td>
 		<td>
 			{{ task.noSubtasks }}
 		</td>
-		<td>
-			{{ task.status }}
-		</td>
-		<td>
-			{{ task.timeOfInit }}
-		</td>
 	</tr>
 </tbody>
 </table>
+<app-subtask-table *ngIf="taskSelected" [task]="currentTask"></app-subtask-table>

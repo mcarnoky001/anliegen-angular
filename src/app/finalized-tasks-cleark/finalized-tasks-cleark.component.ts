@@ -18,10 +18,18 @@ export class FinalizedTasksClearkComponent implements OnInit {
   	this.getTasks();
   }
 
+  currentTask: Task;
+  taskSelected: Boolean=false;
+
   getTasks(): void {
     this.tasks = this.taskService.getTasks(this.searchQuery);
   }
 
   tasks: Observable<any>;
+
+  clickTableRow(task){
+    this.taskSelected = true;
+  	this.currentTask = task;
+  }
 
 }

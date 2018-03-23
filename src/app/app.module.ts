@@ -16,6 +16,7 @@ import { AuthService } from './auth.service';
 import { LoginComponent } from './login/login.component';
 import { MainMenuComponent } from './main-menu/main-menu.component';
 import { FinalizedTasksClearkComponent } from './finalized-tasks-cleark/finalized-tasks-cleark.component';
+import { SubtaskTableComponent } from './subtask-table/subtask-table.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -49,7 +50,8 @@ const appRoutes: Routes = [
     SelectedTaskComponent,
     LoginComponent,
     MainMenuComponent,
-    FinalizedTasksClearkComponent
+    FinalizedTasksClearkComponent,
+    SubtaskTableComponent
   ],
   bootstrap:    [ AppComponent ],
   providers: [AuthGuard, AuthService]

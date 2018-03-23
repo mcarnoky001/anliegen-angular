@@ -1,0 +1,23 @@
+<div>
+<table class="ui celled striped table">
+<thead>
+	<tr>
+	<th>Skill Name</th>
+	<th>Task Type</th>
+	<th>Time of Initiation</th>
+</tr></thead>
+<tbody>
+	<tr *ngFor="let subtask of subtasks">
+		<td>
+			{{ subtask.name }}
+		</td>
+		<td>
+			{{ subtask.description }}
+		</td>
+		<td>
+			{{ task.timeOfInit }}
+		</td>
+	</tr>
+</tbody>
+</table>
+</div>

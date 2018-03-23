@@ -23,7 +23,7 @@ export class SubtaskService {
     }
   }
 
-  getSubtasks(searchQuery: String): Observable<{}> {
+  getSubtasks(searchQuery: String): Observable<any> {
     return this.http.get(this.ROOT_URL + '?q=' + searchQuery);
   }
 
