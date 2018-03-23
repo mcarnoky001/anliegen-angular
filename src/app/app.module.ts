@@ -17,6 +17,7 @@ import { LoginComponent } from './login/login.component';
 import { MainMenuComponent } from './main-menu/main-menu.component';
 import { FinalizedTasksClearkComponent } from './finalized-tasks-cleark/finalized-tasks-cleark.component';
 import { SubtaskTableComponent } from './subtask-table/subtask-table.component';
+import { CurrentTaskClearkComponent } from './current-task-cleark/current-task-cleark.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -27,7 +28,8 @@ const appRoutes: Routes = [
   { path: 'skills', component: SkillsComponent, canActivate: [AuthGuard] },
   { path: 'newtask', component: NewTaskComponent, canActivate: [AuthGuard] },
   { path: 'selectedtask', component: SelectedTaskComponent, canActivate: [AuthGuard] },
-  { path: 'finalizedtaskscleark', component: FinalizedTasksClearkComponent, canActivate: [AuthGuard] }
+  { path: 'finalizedtaskscleark', component: FinalizedTasksClearkComponent, canActivate: [AuthGuard] },
+  { path: 'currenttaskcleark', component: CurrentTaskClearkComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({
@@ -51,7 +53,8 @@ const appRoutes: Routes = [
     LoginComponent,
     MainMenuComponent,
     FinalizedTasksClearkComponent,
-    SubtaskTableComponent
+    SubtaskTableComponent,
+    CurrentTaskClearkComponent
   ],
   bootstrap:    [ AppComponent ],
   providers: [AuthGuard, AuthService]
