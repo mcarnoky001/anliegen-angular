@@ -2,13 +2,15 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SECRET_KEY = 'y9(r1y2j*3k#3j8m72ilrn$k0*gv8i@twghoktg4o5fmbs0jc4'
-DEBUG = True
+# DEBUG = True
+
+DEBUG = False
+
 
 CSRF_COOKIE_SECURE = False # TODO: change to true before production
 
-ALLOWED_HOSTS = [
-    'localhost'
-]
+# ALLOWED_HOSTS = ['localhost']
+ALLOWED_HOSTS =  ['project-name.herokuapp.com', '.yourdomain.com']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -75,6 +77,12 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+# add this - for heroku app deploy
+import dj_database_url
+db_from_env = dj_database_url.config()
+DATABASES['default'].update(db_from_env)
+DATABASES['default']['CONN_MAX_AGE'] = 500
 
 AUTH_PASSWORD_VALIDATORS = [
     {
