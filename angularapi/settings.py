@@ -9,8 +9,8 @@ DEBUG = False
 
 CSRF_COOKIE_SECURE = False # TODO: change to true before production
 
-# ALLOWED_HOSTS = ['localhost']
-ALLOWED_HOSTS =  ['project-name.herokuapp.com', '.yourdomain.com']
+ALLOWED_HOSTS = ['localhost']
+# ALLOWED_HOSTS =  ['project-name.herokuapp.com', '.yourdomain.com']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -79,10 +79,10 @@ DATABASES = {
 }
 
 # add this - for heroku app deploy
-import dj_database_url
-db_from_env = dj_database_url.config()
-DATABASES['default'].update(db_from_env)
-DATABASES['default']['CONN_MAX_AGE'] = 500
+# import dj_database_url
+# db_from_env = dj_database_url.config()
+# DATABASES['default'].update(db_from_env)
+# DATABASES['default']['CONN_MAX_AGE'] = 500
 
 AUTH_PASSWORD_VALIDATORS = [
     {
