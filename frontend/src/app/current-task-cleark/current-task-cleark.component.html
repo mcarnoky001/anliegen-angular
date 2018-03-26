@@ -1,3 +1,61 @@
-<p>
-  current-task-cleark works!
-</p>
+<div class="ui secondary menu">
+  <div class="item"><h2>My current tasks</h2></div>
+  <div class="right menu">
+    <div class="item"><div class="ui button blue ">New Contract</div></div>
+  </div>
+</div>
+
+<div class="ui secondary menu form">
+  <a class="item"><h3><i class="sync alternate icon"></i> Refresh table</h3></a>
+  <div class="right menu">
+    <div class="item">
+      <div class="ui checkbox">
+        <input type="checkbox" name="on_call">
+        <label>On the call</label>
+      </div>
+      <!-- <div class="ui toggle checkbox">
+        <input type="checkbox" name="gift">
+        <label>On the call</label>
+      </div> -->
+    </div>
+  </div>
+</div>
+
+<table class="ui celled striped table">
+  <thead>
+    <tr>
+    <th></th>
+    <th>Contract Number</th>
+    <th>Time of initiation</th>
+    <th>Number of Available Tasks</th>
+    <th>Reason for blocker</th>
+    <th>Note</th>
+    <th></th>
+    
+  </tr></thead>
+  <tbody>
+    <tr *ngFor="let task of tasks | async">
+      <td (click)="clickTableRow(task)" [ngClass]="{ selected: currentTask === task }">
+        <i class="copy outline icon large"></i>
+      </td>
+      <td (click)="clickTableRow(task)" [ngClass]="{ selected: currentTask === task }">
+        {{ task.contractId }}
+      </td>
+      <td (click)="clickTableRow(task)" [ngClass]="{ selected: currentTask === task }">
+        {{ task.timeOfInit }}
+      </td>
+      <td (click)="clickTableRow(task)" [ngClass]="{ selected: currentTask === task }">
+        {{ task.noSubtasks }}
+      </td>
+      <td (click)="clickTableRow(task)" [ngClass]="{ selected: currentTask === task }">
+        {{ task.blocker }}
+      </td>
+      <td (click)="clickTableRow(task)" [ngClass]="{ selected: currentTask === task }">
+        {{ task.note }}
+      </td>
+      <td (click)="clickTableRow(task)" [ngClass]="{ selected: currentTask === task }">
+        <i class="save outline icon large"></i>
+      </td>
+    </tr>
+  </tbody>
+  </table>

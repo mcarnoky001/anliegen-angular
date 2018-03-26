@@ -1,0 +1,22 @@
+.icon {
+    cursor: pointer;
+}
+
+.secondary.menu>.item>h3 {
+    color: #1e3287;
+}
+
+.ui.blue.button, .ui.blue.buttons .button,
+.ui.toggle.checkbox input:checked~.box:before, 
+.ui.toggle.checkbox input:checked~label:before {
+    background: #1e3287!important;
+}
+
+.ui.celled.table tr td.selected {
+    background: #ddd;
+}
+
+/* .ui.celled.table tr td {
+    cursor: pointer;
+} */
+
