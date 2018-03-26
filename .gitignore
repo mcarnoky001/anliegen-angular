@@ -4,19 +4,19 @@
 
 *.egg-info
 *.pot
-__pycache__/
+*/__pycache__/
 *.py[cod]
 .tox/
 *.pyc 
-__pycache__
+*/__pycache__
 MANIFEST
-dist/
+frontend/dist/
 docs/_build/
 docs/locale/
-node_modules/
+frontend/node_modules/
 tests/coverage_html/
 tests/.coverage
 build/
 tests/report/
-api/__pycache__/
-api/migrations/
+backend/api/__pycache__/
+backend/api/migrations/

@@ -21,15 +21,15 @@ import { CurrentTaskClearkComponent } from './current-task-cleark/current-task-c
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: '', component: SelectedTaskComponent, canActivate: [AuthGuard] },
-  { path: 'home', component: SelectedTaskComponent, canActivate: [AuthGuard] },
-  { path: 'tasks', component: TasksComponent, canActivate: [AuthGuard] },
-  { path: 'subtasks', component: SubtasksComponent, canActivate: [AuthGuard] },
-  { path: 'skills', component: SkillsComponent, canActivate: [AuthGuard] },
-  { path: 'newtask', component: NewTaskComponent, canActivate: [AuthGuard] },
-  { path: 'selectedtask', component: SelectedTaskComponent, canActivate: [AuthGuard] },
-  { path: 'finalizedtaskscleark', component: FinalizedTasksClearkComponent, canActivate: [AuthGuard] },
-  { path: 'currenttaskcleark', component: CurrentTaskClearkComponent, canActivate: [AuthGuard] }
+  { path: '', component: SelectedTaskComponent  },
+  { path: 'home', component: SelectedTaskComponent  },
+  { path: 'tasks', component: TasksComponent  },
+  { path: 'subtasks', component: SubtasksComponent  },
+  { path: 'skills', component: SkillsComponent  },
+  { path: 'newtask', component: NewTaskComponent  },
+  { path: 'selectedtask', component: SelectedTaskComponent  },
+  { path: 'finalizedtaskscleark', component: FinalizedTasksClearkComponent  },
+  { path: 'currenttaskcleark', component: CurrentTaskClearkComponent  }
 ];
 
 @NgModule({
