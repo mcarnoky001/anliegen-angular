@@ -5,6 +5,7 @@ from rest_framework.authtoken import views as auth_views
 urlpatterns = [
     re_path(r'^tasks/(?P<pk>\d+)/$', views.TaskRudView.as_view(), name='task_rud'),
     path('tasks/', views.TaskAPIView.as_view(), name='task_api'),
+    path('usertasks/', views.UserTasksAPIView.as_view(), name='usertasks_api'),
     re_path(r'^subtasks/(?P<pk>\d+)/$', views.SubTaskRudView.as_view(), name='subtask_rud'),
     path('subtasks/', views.SubTaskAPIView.as_view(), name='subtask_api'),
     re_path(r'^skills/(?P<pk>\d+)/$', views.SkillRudView.as_view(), name='skill_rud'),

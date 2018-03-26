@@ -25,8 +25,9 @@ export class LoginComponent implements OnInit  {
     login() {
       this.authService.login(this.username, this.password)
         .subscribe(res => {
-          
-          localStorage.setItem('app-token', JSON.stringify(res));
+          let tokenJSONText = JSON.stringify(res);
+          let tokenJSON = JSON.parse(tokenJSONText);
+          localStorage.setItem('app-token', tokenJSON.token);
           localStorage.setItem('app-login', 'true');
           if (this.authService.isLoggedIn) {
             let redirect = this.authService.redirectUrl ? this.authService.redirectUrl : 'finalizedtaskscleark';

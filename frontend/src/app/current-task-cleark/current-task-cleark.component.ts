@@ -5,6 +5,7 @@ import { TaskService } from '../services/task.service';
 
 import { Observable } from 'rxjs/Observable';
 
+declare var $:any;
 
 @Component({
   selector: 'app-current-task-cleark',
@@ -20,18 +21,33 @@ export class CurrentTaskClearkComponent implements OnInit {
   	this.getTasks();
   }
 
+  tasks: Task[];
   currentTask: Task;
   taskSelected: Boolean=false;
 
   getTasks(): void {
-    this.tasks = this.taskService.getTasks('');
+    this.taskService.getCurrentUserTasks()
+      .subscribe(res => this.tasks = res);
   }
 
-  tasks: Observable<any>;
+
 
   clickTableRow(task){
     this.taskSelected = true;
   	this.currentTask = task;
+  }
+
+  copyContractNumber() {
+    
+  }
+
+  saveTask(task) {
+    this.taskService.updateTask(task)
+      .subscribe(res => {
+        this.getTasks();
+        console.log(res);
+        
+      });
   }
 
 }

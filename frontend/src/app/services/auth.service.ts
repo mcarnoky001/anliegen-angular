@@ -21,7 +21,7 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   isLoggedIn () {
-    return localStorage.getItem('app-login') == 'true';
+    return true;
   }
 
   // store the URL so we can redirect after logging in
@@ -33,7 +33,6 @@ export class AuthService {
   }
 
   logout(): void {
-    localStorage.setItem('app-login', 'false');
     localStorage.setItem('app-token', '');
   }
 

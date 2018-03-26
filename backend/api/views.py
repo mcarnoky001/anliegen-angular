@@ -4,6 +4,7 @@ from .models import Task, Subtask, Skill, SubtaskSkill, UserSkill
 from .serializers import TaskSerializer, SubtaskSerializer, SkillSerializer, SubtaskSkillSerializer, UserSkillSerializer
 from rest_framework import generics, mixins
 from django.db.models import Q
+from rest_framework.authtoken.models import Token
 
 class TaskAPIView(mixins.CreateModelMixin, generics.ListAPIView):
     lookup_field        = 'pk'
@@ -20,6 +21,21 @@ class TaskAPIView(mixins.CreateModelMixin, generics.ListAPIView):
 
     def post(self, request, *args, **kwargs):
         return self.create(request, *args, **kwargs)
+
+
+class UserTasksAPIView(generics.ListAPIView):
+    lookup_field        = 'pk'
+    serializer_class    = TaskSerializer
+    def get_queryset(self):
+        qs = Task.objects.all()
+        token = self.request.META['HTTP_AUTHORIZATION']
+        print(token)
+        tokenObj = Token.objects.get(key=token)
+        print(tokenObj)
+        if(token) is not None:
+            qs = Task.objects.filter(user=tokenObj.user_id)
+        return qs
+
 
 class TaskRudView(generics.RetrieveUpdateDestroyAPIView):
     pass

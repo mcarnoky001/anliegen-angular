@@ -8,7 +8,7 @@ import { Observable } from 'rxjs/Observable';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json',
-    'Authorization': 'my-auth-token'
+    'Authorization': localStorage.getItem('app-token')
   })
 };
 
@@ -20,9 +20,7 @@ export class TaskService {
   constructor(private http: HttpClient) { }
 
   saveTask(data: Task): Observable<{}> {
-    if(data.name != '' && data.description != '' && data.contractId != 0) {
-      return this.http.post(this.ROOT_URL + '/', data, httpOptions);
-    }
+    return this.http.post(this.ROOT_URL + '/', data, httpOptions);
   }
 
   getTasks(searchQuery: String): Observable<any> {
@@ -31,6 +29,11 @@ export class TaskService {
 
   getTask(id: number): Observable<any> {
     const url = `${this.ROOT_URL}/${id}`;
+    return this.http.get(url, httpOptions);
+  }
+
+  getCurrentUserTasks(): Observable<any> {
+    const url = `http://localhost:8000/usertasks/`;
     return this.http.get(url, httpOptions);
   }
 

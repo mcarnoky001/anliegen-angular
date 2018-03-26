@@ -6,7 +6,7 @@
 </div>
 
 <div class="ui secondary menu form">
-  <a class="item"><h3><i class="sync alternate icon"></i> Refresh table</h3></a>
+  <a class="item" (click)="getTasks()"><h3><i class="sync alternate icon"></i> Refresh table</h3></a>
   <div class="right menu">
     <div class="item">
       <div class="ui checkbox">
@@ -27,16 +27,16 @@
     <th></th>
     <th>Contract Number</th>
     <th>Time of initiation</th>
-    <th>Number of Available Tasks</th>
+    <th>Number of Tasks</th>
     <th>Reason for blocker</th>
     <th>Note</th>
     <th></th>
     
   </tr></thead>
   <tbody>
-    <tr *ngFor="let task of tasks | async">
+    <tr *ngFor="let task of tasks">
       <td (click)="clickTableRow(task)" [ngClass]="{ selected: currentTask === task }">
-        <i class="copy outline icon large"></i>
+        <i class="copy outline icon large" (click)="copyContractNumber()"></i>
       </td>
       <td (click)="clickTableRow(task)" [ngClass]="{ selected: currentTask === task }">
         {{ task.contractId }}
@@ -48,13 +48,13 @@
         {{ task.noSubtasks }}
       </td>
       <td (click)="clickTableRow(task)" [ngClass]="{ selected: currentTask === task }">
-        {{ task.blocker }}
+        <span *ngIf="!currentTask === task">{{ task.blocker }}</span>
       </td>
       <td (click)="clickTableRow(task)" [ngClass]="{ selected: currentTask === task }">
         {{ task.note }}
       </td>
       <td (click)="clickTableRow(task)" [ngClass]="{ selected: currentTask === task }">
-        <i class="save outline icon large"></i>
+        <i class="save outline icon large" (click)="saveTask(task)"></i>
       </td>
     </tr>
   </tbody>
