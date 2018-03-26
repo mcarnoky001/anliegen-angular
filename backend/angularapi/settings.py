@@ -25,8 +25,6 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
 ]
 
-CORS_ORIGIN_ALLOW_ALL = True
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -55,7 +53,7 @@ REST_FRAMEWORK = {
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'dist')],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -106,10 +104,9 @@ USE_TZ = True
 
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'dist'),
     os.path.join(BASE_DIR, 'static'),
 )
-STATIC_ROOT = os.path.join(BASE_DIR, 'public')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static-root')
 STATIC_URL = '/static/'
 
 WEBPACK_LOADER = {
@@ -118,3 +115,13 @@ WEBPACK_LOADER = {
         'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json'),
     }
 }
+
+CORS_REPLACE_HTTPS_REFERER      = False
+HOST_SCHEME                     = "http://"
+SECURE_PROXY_SSL_HEADER         = None
+SECURE_SSL_REDIRECT             = False
+SESSION_COOKIE_SECURE           = False
+CSRF_COOKIE_SECURE              = False
+SECURE_HSTS_SECONDS             = None
+SECURE_HSTS_INCLUDE_SUBDOMAINS  = False
+SECURE_FRAME_DENY               = False
