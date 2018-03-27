@@ -30,15 +30,18 @@ class UserTasksAPIView(generics.ListAPIView):
         qs = Task.objects.all()
         try:
             token = self.request.META['HTTP_AUTHORIZATION']
-            tokenObj = Token.objects.get(key=token)
-            if(tokenObj) is not None:
-                qs = Task.objects.filter(user=tokenObj.user_id)
-                status = self.request.GET.get('status')
-                qs = qs.filter(status = status)
+            
+                
         except:
             token=''
             print('NOT AUTHORIZED')
-
+        tokenObj = Token.objects.get(key=token)
+        if tokenObj is not None:
+            qs = Task.objects.filter(user=tokenObj.user_id)
+            status = self.request.GET.get('status')
+            print(status)
+            qs = qs.filter(status = status)
+            print(qs)
         return qs
 
 

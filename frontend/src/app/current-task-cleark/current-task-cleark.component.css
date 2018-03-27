@@ -16,6 +16,10 @@
     background: none;
 }
 
+.ui.celled.table tr.open td {
+    background: #ccffcc;
+}
+
 .ui.celled.table tr.selected td {
     background: #1e3287;
     color: white;

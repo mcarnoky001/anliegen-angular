@@ -22,22 +22,23 @@ export class CurrentTaskClearkComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    //this.getTasks();
-    this.getCurrentTask();
+    this.getOpenTasks();
+    this.getBlockedTasks();
   }
 
-  tasks: Task[];
+  openTasks: Task[];
+  blockedTasks: Task[];
   currentTask: Task;
   taskSelected: Boolean=false;
 
-  getTasks(): void {
-    this.userTaskService.getCurrentUserTasks()
-      .subscribe(res => this.tasks = res);
+  getOpenTasks(): void {
+    this.userTaskService.getOpenUserTasks()
+      .subscribe(res => this.openTasks = res);
   }
 
-  getCurrentTask() {
-    this.userTaskService.getCurrentUserTask()
-      .subscribe(res => this.tasks = res);
+  getBlockedTasks(): void {
+    this.userTaskService.getBlockedUserTasks()
+      .subscribe(res => this.blockedTasks = res);
   }
 
   clickTableRow(task){
@@ -49,12 +50,16 @@ export class CurrentTaskClearkComponent implements OnInit {
     
   }
 
+  refreshTable() {
+    this.getOpenTasks();
+    this.getBlockedTasks();
+    this.currentTask = null;
+  }
+
   saveTask(task) {
     this.taskService.updateTask(task)
       .subscribe(res => {
-        this.getCurrentTask();
-        this.currentTask = null;
-        
+        this.refreshTable();      
       });
   }
 

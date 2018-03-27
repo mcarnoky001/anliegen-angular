@@ -19,19 +19,19 @@ export class UserTaskService {
 
   constructor(private http: HttpClient) { }
 
-  getUserCompletedTasks(): Observable<any> {
-    const url = `${this.ROOT_URL}/1/`;
+  getOpenUserTasks(): Observable<any> {
+    const url = `${this.ROOT_URL}/?status=0`;
     return this.http.get(url, httpOptions);
   }
 
-  getCurrentUserTask(): Observable<any> {
-    const url = `${this.ROOT_URL}/?status=0/`;
+  getCompletedUserTasks(): Observable<any> {
+    const url = `${this.ROOT_URL}/?status=1`;
     return this.http.get(url, httpOptions);
   }
 
-  getCurrentUserTasks(): Observable<any> {
-    const url = `${this.ROOT_URL}`;
-    return this.http.get(this.ROOT_URL, httpOptions);
+  getBlockedUserTasks(): Observable<any> {
+    const url = `${this.ROOT_URL}/?status=2`;
+    return this.http.get(url, httpOptions);
   }
 
 }
