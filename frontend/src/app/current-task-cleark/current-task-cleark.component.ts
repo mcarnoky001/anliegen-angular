@@ -16,6 +16,12 @@ declare var $:any;
 })
 export class CurrentTaskClearkComponent implements OnInit {
 
+  openedTaskFlag: boolean = false;
+  openTasks: Task[];
+  blockedTasks: Task[];
+  currentTask: Task;
+  taskSelected: Boolean=false;
+
   constructor(
     private userTaskService: UserTaskService,
     private taskService: TaskService
@@ -26,14 +32,19 @@ export class CurrentTaskClearkComponent implements OnInit {
     this.getBlockedTasks();
   }
 
-  openTasks: Task[];
-  blockedTasks: Task[];
-  currentTask: Task;
-  taskSelected: Boolean=false;
 
   getOpenTasks(): void {
+    this.openedTaskFlag = false;
     this.userTaskService.getOpenUserTasks()
-      .subscribe(res => this.openTasks = res);
+      .subscribe(res => {
+        this.openTasks = res;
+        if (this.openTasks.length > 0) this.openedTaskFlag = true;
+      });
+  }
+
+  getNewTask() {
+    this.userTaskService.getNewTask()
+      .subscribe(res => this.refreshTable())
   }
 
   getBlockedTasks(): void {
@@ -57,10 +68,18 @@ export class CurrentTaskClearkComponent implements OnInit {
   }
 
   saveTask(task) {
-    this.taskService.updateTask(task)
-      .subscribe(res => {
-        this.refreshTable();      
+    if (this.currentTask.blocker != '') {
+      this.taskService.blockTask(task)
+        .subscribe(res => {
+          this.refreshTable();      
       });
+    }
+    else {
+      this.taskService.updateTask(task)
+        .subscribe(res => {
+          this.refreshTable();      
+      });
+    }
   }
 
 }

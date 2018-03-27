@@ -29,9 +29,7 @@ class UserTasksAPIView(generics.ListAPIView):
     def get_queryset(self):
         qs = Task.objects.all()
         try:
-            token = self.request.META['HTTP_AUTHORIZATION']
-            
-                
+            token = self.request.META['HTTP_AUTHORIZATION']          
         except:
             token=''
             print('NOT AUTHORIZED')
@@ -39,9 +37,26 @@ class UserTasksAPIView(generics.ListAPIView):
         if tokenObj is not None:
             qs = Task.objects.filter(user=tokenObj.user_id)
             status = self.request.GET.get('status')
-            print(status)
             qs = qs.filter(status = status)
-            print(qs)
+        return qs
+
+
+class NewTaskRetrieveView(generics.ListAPIView):
+    lookup_field        = 'status'
+    serializer_class    = TaskSerializer
+    def get_queryset(self):
+        qs = Task.objects.all()
+        try:
+            token = self.request.META['HTTP_AUTHORIZATION']      
+        except:
+            token=''
+            print('NOT AUTHORIZED')
+        tokenObj = Token.objects.get(key=token)
+        if tokenObj is not None:
+            task = qs.filter(status = 0)[:1].get()
+            task.user_id = tokenObj.user_id
+            task.save()
+            print(task)
         return qs
 
 

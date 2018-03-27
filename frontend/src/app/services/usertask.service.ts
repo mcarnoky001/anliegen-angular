@@ -23,6 +23,11 @@ export class UserTaskService {
     const url = `${this.ROOT_URL}/?status=0`;
     return this.http.get(url, httpOptions);
   }
+  
+  getNewTask() {
+    const url = `http://localhost:8000/newtask`;
+    return this.http.get(url, httpOptions);
+  }
 
   getCompletedUserTasks(): Observable<any> {
     const url = `${this.ROOT_URL}/?status=1`;

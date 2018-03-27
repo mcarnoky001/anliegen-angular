@@ -23,6 +23,12 @@ export class TaskService {
     return this.http.post(this.ROOT_URL + '/', data, httpOptions);
   }
 
+  blockTask(data: Task) {
+    data.status = 2;
+    const url = `${this.ROOT_URL}/${data.pk}/`;
+    return this.http.put(url, data, httpOptions);
+  }
+
   getTasks(searchQuery: String): Observable<any> {
     return this.http.get(this.ROOT_URL + '?q=' + searchQuery);
   }
