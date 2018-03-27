@@ -12,8 +12,8 @@ class Task(models.Model):
     status = models.IntegerField()
     timeOfInit = models.DateTimeField()
     noSubtasks = models.IntegerField()
-    blocker = models.CharField(max_length=200)
-    note = models.CharField(max_length=250)
+    blocker = models.CharField(max_length=200, blank=True, null=True)
+    note = models.CharField(max_length=250, blank=True, null=True)
 
     def __str__(self):
         return self.name

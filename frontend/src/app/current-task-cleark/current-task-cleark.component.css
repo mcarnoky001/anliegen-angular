@@ -12,8 +12,13 @@
     background: #1e3287!important;
 }
 
-.ui.celled.table tr td.selected {
-    background: #ddd;
+.ui.celled.table tr td {
+    background: none;
+}
+
+.ui.celled.table tr.selected td {
+    background: #1e3287;
+    color: white;
 }
 
 /* .ui.celled.table tr td {

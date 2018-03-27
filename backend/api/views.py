@@ -29,12 +29,10 @@ class UserTasksAPIView(generics.ListAPIView):
     def get_queryset(self):
         qs = Task.objects.all()
         token = self.request.META['HTTP_AUTHORIZATION']
-        print(token)
         tokenObj = Token.objects.get(key=token)
-        print(tokenObj)
-        if(token) is not None:
-            qs = Task.objects.filter(user=tokenObj.user_id)
-        return qs
+        if(tokenObj) is not None:
+            return Task.objects.filter(user=tokenObj.user_id)
+        return None
 
 
 class TaskRudView(generics.RetrieveUpdateDestroyAPIView):

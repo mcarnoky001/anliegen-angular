@@ -34,26 +34,29 @@
     
   </tr></thead>
   <tbody>
-    <tr *ngFor="let task of tasks">
-      <td (click)="clickTableRow(task)" [ngClass]="{ selected: currentTask === task }">
+    <tr *ngFor="let task of tasks" [ngClass]="{ selected: currentTask === task }" class="ui form">
+      <td>
         <i class="copy outline icon large" (click)="copyContractNumber()"></i>
       </td>
-      <td (click)="clickTableRow(task)" [ngClass]="{ selected: currentTask === task }">
+      <td (click)="clickTableRow(task)">
         {{ task.contractId }}
       </td>
-      <td (click)="clickTableRow(task)" [ngClass]="{ selected: currentTask === task }">
+      <td (click)="clickTableRow(task)">
         {{ task.timeOfInit }}
       </td>
-      <td (click)="clickTableRow(task)" [ngClass]="{ selected: currentTask === task }">
+      <td (click)="clickTableRow(task)">
         {{ task.noSubtasks }}
       </td>
-      <td (click)="clickTableRow(task)" [ngClass]="{ selected: currentTask === task }">
+      <td (click)="clickTableRow(task)">
         <span *ngIf="!currentTask === task">{{ task.blocker }}</span>
       </td>
-      <td (click)="clickTableRow(task)" [ngClass]="{ selected: currentTask === task }">
-        {{ task.note }}
+      <td (click)="clickTableRow(task)">
+        <div *ngIf="currentTask === task">
+          <input type="text" [(ngModel)]="task.note">
+        </div>
+        <span *ngIf="!currentTask == task">{{ task.note }}a</span>
       </td>
-      <td (click)="clickTableRow(task)" [ngClass]="{ selected: currentTask === task }">
+      <td>
         <i class="save outline icon large" (click)="saveTask(task)"></i>
       </td>
     </tr>
