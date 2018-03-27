@@ -32,11 +32,6 @@ export class TaskService {
     return this.http.get(url, httpOptions);
   }
 
-  getCurrentUserTasks(): Observable<any> {
-    const url = `http://localhost:8000/usertasks/`;
-    return this.http.get(url, httpOptions);
-  }
-
   deleteTask(id: number): Observable<{}> {
     const url = `${this.ROOT_URL}/${id}`;
     return this.http.delete(url, httpOptions);

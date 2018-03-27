@@ -48,13 +48,18 @@
         {{ task.noSubtasks }}
       </td>
       <td (click)="clickTableRow(task)">
-        <span *ngIf="!currentTask === task">{{ task.blocker }}</span>
+        <select class="ui dropdown" *ngIf="currentTask === task" [(ngModel)]="task.blocker">
+          <option value="LZ">Too lazy to do Something</option>
+          <option value="CF">Not enough coffee</option>
+          <option value="FD">Its friday already</option>
+        </select>
+        <span *ngIf="!(currentTask === task)">{{ task.blocker }}</span>
       </td>
       <td (click)="clickTableRow(task)">
         <div *ngIf="currentTask === task">
           <input type="text" [(ngModel)]="task.note">
         </div>
-        <span *ngIf="!currentTask == task">{{ task.note }}a</span>
+        <span *ngIf="!(currentTask == task)">{{ task.note }}</span>
       </td>
       <td>
         <i class="save outline icon large" (click)="saveTask(task)"></i>
@@ -62,3 +67,4 @@
     </tr>
   </tbody>
   </table>
+  <app-subtask-table *ngIf="currentTask" [task]="currentTask"></app-subtask-table>

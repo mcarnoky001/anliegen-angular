@@ -30,7 +30,6 @@ export class FinalizedTasksClearkComponent implements OnInit {
   tasks: Observable<any>;
 
   clickTableRow(task){
-    this.taskSelected = true;
   	this.currentTask = task;
   }
 

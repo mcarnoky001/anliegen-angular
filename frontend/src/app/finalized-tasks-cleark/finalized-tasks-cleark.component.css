@@ -1,7 +1,10 @@
-.ui.celled.table tr td.selected {
-  background: #ddd;
-}
-
 .ui.celled.table tr td {
+  background: none;
   cursor: pointer;
 }
+
+.ui.celled.table tr.selected td {
+  background: #1e3287;
+  color: white;
+}
+

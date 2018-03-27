@@ -5,14 +5,14 @@
 	<th>Number of Available Tasks</th>
 </tr></thead>
 <tbody>
-	<tr *ngFor="let task of tasks | async">
-		<td (click)="clickTableRow(task)" [ngClass]="{ selected: currentTask === task }">
+	<tr *ngFor="let task of tasks | async"  [ngClass]="{ selected: currentTask === task }">
+		<td (click)="clickTableRow(task)">
 			{{ task.contractId }}
 		</td>
-		<td (click)="clickTableRow(task)" [ngClass]="{ selected: currentTask === task }">
+		<td (click)="clickTableRow(task)">
 			{{ task.noSubtasks }}
 		</td>
 	</tr>
 </tbody>
 </table>
-<app-subtask-table *ngIf="taskSelected" [task]="currentTask"></app-subtask-table>
+<app-subtask-table *ngIf="currentTask" [task]="currentTask"></app-subtask-table>

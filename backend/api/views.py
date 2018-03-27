@@ -24,15 +24,22 @@ class TaskAPIView(mixins.CreateModelMixin, generics.ListAPIView):
 
 
 class UserTasksAPIView(generics.ListAPIView):
-    lookup_field        = 'pk'
+    lookup_field        = 'status'
     serializer_class    = TaskSerializer
     def get_queryset(self):
         qs = Task.objects.all()
-        token = self.request.META['HTTP_AUTHORIZATION']
-        tokenObj = Token.objects.get(key=token)
-        if(tokenObj) is not None:
-            return Task.objects.filter(user=tokenObj.user_id)
-        return None
+        try:
+            token = self.request.META['HTTP_AUTHORIZATION']
+            tokenObj = Token.objects.get(key=token)
+            if(tokenObj) is not None:
+                qs = Task.objects.filter(user=tokenObj.user_id)
+                status = self.request.GET.get('status')
+                qs = qs.filter(status = status)
+        except:
+            token=''
+            print('NOT AUTHORIZED')
+
+        return qs
 
 
 class TaskRudView(generics.RetrieveUpdateDestroyAPIView):
