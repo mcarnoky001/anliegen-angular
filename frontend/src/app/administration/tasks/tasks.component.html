@@ -22,7 +22,6 @@
 	<tr>
 	<th>Id</th>
 	<th class="single line">Name</th>
-	<th>Description</th>
 	<th>Contract</th>
 	<th>Status</th>
 	<th>Actions</th>
@@ -35,9 +34,6 @@
 		<td>
 			{{ task.name }}
 		</td>
-		<td class="single line">
-			{{ task.description }}
-		</td>
 		<td>
 			{{ task.contractId }}
 		</td>
@@ -47,6 +43,9 @@
 		<td class="right aligned">
 			<div class="ui button small" (click)="editTask(task)"><i class="pencil alternate icon"></i>Edit</div>
 			<div class="ui red button small" (click)="deleteTask(task.pk)"><i class="trash alternate icon"></i>Delete</div>
+			<div class="ui green button small" 
+					 (click)="resolveTask(task)"
+					 *ngIf="task.status == 0"><i class="trash alternate icon"></i>Resolve</div>
 		</td>
 	</tr>
 </tbody>

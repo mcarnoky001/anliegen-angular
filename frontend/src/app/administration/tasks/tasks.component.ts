@@ -44,5 +44,12 @@ export class TasksComponent implements OnInit {
       .modal('show');
   }
 
+  resolveTask(task) {
+    task.status = 1;
+    this.taskService.updateTask(task)
+      .subscribe(res => {});
+    this.getTasks();
+  }
+
 
 }
