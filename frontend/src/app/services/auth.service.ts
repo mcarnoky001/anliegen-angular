@@ -1,24 +1,23 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
+import { HttpConnectionService } from './http-connection.service';
+
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/delay';
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type':  'application/json',
-    'Authorization': localStorage.getItem('app-token')
-  })
-};
 
 @Injectable()
 export class AuthService {
 
-  readonly ROOT_URL = 'http://localhost:8000/api-token-auth/';
+  readonly EXTENDED_URL = this.httpConnection.ROOT_URL + 'api-token-auth/';
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private httpConnection: HttpConnectionService
+  ) { }
 
   isLoggedIn () {
     return true;
@@ -29,7 +28,7 @@ export class AuthService {
 
   login(username, password): Observable<any> {
     let user = { 'username': username, 'password': password };
-    return this.http.post(this.ROOT_URL, user);
+    return this.http.post(this.EXTENDED_URL, user);
   }
 
   logout(): void {

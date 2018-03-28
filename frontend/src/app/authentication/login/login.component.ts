@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router }      from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { HttpConnectionService } from '../../services/http-connection.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  providers: [AuthService]
+  providers: [AuthService, HttpConnectionService]
 })
 export class LoginComponent implements OnInit  {
     message: string;
@@ -14,7 +15,11 @@ export class LoginComponent implements OnInit  {
     username: string;
     password: string;
 
-    constructor(public authService: AuthService, public router: Router) {
+    constructor(
+      public authService: AuthService, 
+      public router: Router,
+      private httpConnectionService: HttpConnectionService
+    ) {
       this.setMessage();
     }
 

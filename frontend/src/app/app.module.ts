@@ -13,11 +13,14 @@ import { SkillsComponent } from './administration/skills/skills.component';
 import { SelectedTaskComponent } from './administration/selected-task/selected-task.component';
 import { AuthGuard } from './services/auth-guard.service';
 import { AuthService } from './services/auth.service';
+import { MessageService } from './services/message.service';
+import { HttpConnectionService } from './services/http-connection.service';
 import { LoginComponent } from './authentication/login/login.component';
 import { MainMenuComponent } from './main-content/main-menu/main-menu.component';
 import { FinalizedTasksClearkComponent } from './finalized-tasks-cleark/finalized-tasks-cleark.component';
 import { SubtaskTableComponent } from './subtask-table/subtask-table.component';
 import { CurrentTaskClearkComponent } from './current-task-cleark/current-task-cleark.component';
+import { MessageComponent } from './message/message.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -54,9 +57,10 @@ const appRoutes: Routes = [
     MainMenuComponent,
     FinalizedTasksClearkComponent,
     SubtaskTableComponent,
-    CurrentTaskClearkComponent
+    CurrentTaskClearkComponent,
+    MessageComponent
   ],
   bootstrap:    [ AppComponent ],
-  providers: [AuthGuard, AuthService]
+  providers: [AuthGuard, AuthService, HttpConnectionService, MessageService]
 })
 export class AppModule { }

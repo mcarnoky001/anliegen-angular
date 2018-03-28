@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { Task } from '../models/task.model';
 import { TaskService } from '../services/task.service';
 import { UserTaskService } from '../services/usertask.service';
+import { MessageService } from '../services/message.service';
 
 import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 
 declare var $:any;
 
@@ -24,14 +26,14 @@ export class CurrentTaskClearkComponent implements OnInit {
 
   constructor(
     private userTaskService: UserTaskService,
-    private taskService: TaskService
+    private taskService: TaskService,
+    private messageService: MessageService
   ) { }
 
   ngOnInit() {
     this.getOpenTasks();
     this.getBlockedTasks();
   }
-
 
   getOpenTasks(): void {
     this.openedTaskFlag = false;
@@ -65,6 +67,8 @@ export class CurrentTaskClearkComponent implements OnInit {
     this.getOpenTasks();
     this.getBlockedTasks();
     this.currentTask = null;
+    this.messageService.sendMessage({message: 'Refreshed', class: 'info'});
+     setTimeout(() => {this.messageService.clearMessage()}, 13000);
   }
 
   saveTask(task) {

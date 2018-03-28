@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Subtask } from '../models/subtask.model';
 
+import { HttpConnectionService } from './http-connection.service';
+
 import { Observable } from 'rxjs/Observable';
 
 const httpOptions = {
@@ -15,32 +17,35 @@ const httpOptions = {
 @Injectable()
 export class SubtaskService {
 
-  readonly ROOT_URL = 'http://localhost:8000/subtasks';
+  readonly EXTENDED_URL = this.httpConnection.ROOT_URL + 'subtasks';
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private httpConnection: HttpConnectionService
+  ) { }
 
   saveSubtask(data: Subtask): Observable<{}> {
     if(data.name != '' && data.description != '') {
-      return this.http.post(this.ROOT_URL + '/', data, httpOptions);
+      return this.http.post(this.EXTENDED_URL + '/', data, this.httpConnection.getHttpOptions());
     }
   }
 
   getSubtasks(searchQuery: String): Observable<any> {
-    return this.http.get(this.ROOT_URL + '?q=' + searchQuery);
+    return this.http.get(this.EXTENDED_URL + '?q=' + searchQuery);
   }
 
   getSubtaskByTaskId(id: number): Observable<any> {
-    return this.http.get(`${this.ROOT_URL}?id=${id}`);
+    return this.http.get(`${this.EXTENDED_URL}?id=${id}`);
   }
 
   deleteSubtask(id: number): Observable<{}> {
-    const url = `${this.ROOT_URL}/${id}`;
-    return this.http.delete(url, httpOptions);
+    const url = `${this.EXTENDED_URL}/${id}`;
+    return this.http.delete(url, this.httpConnection.getHttpOptions());
   }
 
   updateSubtask(data: Subtask) {
-    const url = `${this.ROOT_URL}/${data.pk}/`;
-    return this.http.put(url, data, httpOptions);
+    const url = `${this.EXTENDED_URL}/${data.pk}/`;
+    return this.http.put(url, data, this.httpConnection.getHttpOptions());
   }
 
 }
