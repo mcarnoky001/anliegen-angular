@@ -38,7 +38,7 @@
   <tbody>
     <tr *ngFor="let task of openTasks" [ngClass]="{ selected: currentTask === task }" class="ui form open">
       <td>
-        <button class="ui icon button basic" ngxClipboard [cbContent]=task.contractId>
+        <button [ngClass]="{ 'basic': currentTask != task, 'inverted': currentTask === task }" class="ui button icon" ngxClipboard [cbContent]=task.contractId>
             <i class="copy outline icon"></i>
           </button>
       </td>
@@ -68,7 +68,7 @@
         <span *ngIf="!(currentTask == task)">{{ task.note }}</span>
       </td>
       <td>
-        <button class="ui icon button basic" (click)="saveTask(task)">
+        <button [ngClass]="{ 'basic': currentTask != task, 'inverted': currentTask === task }" class="ui button icon" (click)="saveTask(task)">
             <i class="save outline icon"></i>
         </button>
       </td>
@@ -76,7 +76,7 @@
 
     <tr *ngFor="let task of blockedTasks" [ngClass]="{ selected: currentTask === task }" class="ui form">
         <td>
-          <button class="ui icon button basic" ngxClipboard [cbContent]=task.contractId>
+          <button [ngClass]="{ 'basic': currentTask != task, 'inverted': currentTask === task }" class="ui button icon" ngxClipboard [cbContent]=task.contractId>
             <i class="copy outline icon"></i>
           </button>
         </td>
@@ -106,7 +106,7 @@
           <span *ngIf="!(currentTask == task)">{{ task.note }}</span>
         </td>
         <td>
-          <button class="ui icon button basic" (click)="saveTask(task)">
+          <button  [ngClass]="{ 'basic': currentTask != task, 'inverted': currentTask === task }" class="ui button icon" (click)="saveTask(task)">
               <i class="save outline icon"></i>
           </button>
         </td>
