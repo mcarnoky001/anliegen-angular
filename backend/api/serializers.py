@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Task, Subtask, Skill, SubtaskSkill, UserSkill
+from .models import Task, Subtask, Skill, SubtaskSkill, UserSkill, Blocker
 
 
 class TaskSerializer(serializers.ModelSerializer):
@@ -17,6 +17,16 @@ class TaskSerializer(serializers.ModelSerializer):
             'noSubtasks',
             'blocker',
             'note',
+        ]
+        read_only_fields = ['pk']
+
+
+class BlockerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Blocker
+        fields = [
+            'pk',
+            'name'
         ]
         read_only_fields = ['pk']
 

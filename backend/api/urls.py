@@ -7,6 +7,7 @@ urlpatterns = [
     path('tasks/', views.TaskAPIView.as_view(), name='task_api'),
     path('usertasks/', views.UserTasksAPIView.as_view(), name='usertasks_api'),
     path('newtask/', views.NewTaskRetrieveView.as_view(), name='newtask_api'),
+    path('blockers', views.BlockersAPIView.as_view(), name="blockers_api"),
     re_path(r'^usertasks/(?P<status>\d+)/$', views.UserTasksAPIView.as_view(), name='usertasks_api'),
     re_path(r'^subtasks/(?P<pk>\d+)/$', views.SubTaskRudView.as_view(), name='subtask_rud'),
     path('subtasks/', views.SubTaskAPIView.as_view(), name='subtask_api'),

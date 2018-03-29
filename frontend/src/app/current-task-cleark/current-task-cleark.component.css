@@ -25,7 +25,7 @@
     color: white;
 }
 
-/* .ui.celled.table tr td {
-    cursor: pointer;
-} */
+.ui.form select {
+    padding: 0!important;
+}
 

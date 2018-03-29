@@ -4,6 +4,7 @@ import { Task } from '../models/task.model';
 import { TaskService } from '../services/task.service';
 import { UserTaskService } from '../services/usertask.service';
 import { MessageService } from '../services/message.service';
+import { BlockerService } from '../services/blocker.service';
 
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
@@ -14,10 +15,11 @@ declare var $:any;
   selector: 'app-current-task-cleark',
   templateUrl: './current-task-cleark.component.html',
   styleUrls: ['./current-task-cleark.component.css'],
-  providers: [UserTaskService, TaskService]
+  providers: [UserTaskService, TaskService, BlockerService]
 })
 export class CurrentTaskClearkComponent implements OnInit {
 
+  blockers: any;
   openedTaskFlag: boolean = false;
   openTasks: Task[];
   blockedTasks: Task[];
@@ -27,12 +29,19 @@ export class CurrentTaskClearkComponent implements OnInit {
   constructor(
     private userTaskService: UserTaskService,
     private taskService: TaskService,
+    private blockerService: BlockerService,
     private messageService: MessageService
   ) { }
 
   ngOnInit() {
     this.getOpenTasks();
     this.getBlockedTasks();
+    this.getBlockers();
+  }
+
+  getBlockers() {
+    this.blockerService.getBlockers()
+      .subscribe(res => this.blockers = res);
   }
 
   getOpenTasks(): void {
@@ -40,7 +49,7 @@ export class CurrentTaskClearkComponent implements OnInit {
     this.userTaskService.getOpenUserTasks()
       .subscribe(res => {
         this.openTasks = res;
-        if (this.openTasks.length > 0) this.openedTaskFlag = true;
+        if (this.openTasks) this.openedTaskFlag = true;
       });
   }
 
@@ -67,8 +76,7 @@ export class CurrentTaskClearkComponent implements OnInit {
     this.getOpenTasks();
     this.getBlockedTasks();
     this.currentTask = null;
-    this.messageService.sendMessage({message: 'Refreshed', class: 'info'});
-     setTimeout(() => {this.messageService.clearMessage()}, 13000);
+    this.messageService.error('error');
   }
 
   saveTask(task) {

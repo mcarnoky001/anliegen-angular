@@ -50,11 +50,13 @@
         {{ task.noSubtasks }}
       </td>
       <td (click)="clickTableRow(task)">
-        <select class="ui dropdown" *ngIf="currentTask === task" [(ngModel)]="task.blocker">
-          <option value="LZ">Too lazy to do Something</option>
-          <option value="CF">Not enough coffee</option>
-          <option value="FD">Its friday already</option>
-        </select>
+        <ng-container *ngIf="currentTask === task">
+          <select class="ui dropdown"
+                  [(ngModel)]="task.blocker"
+                  *ngFor="let blocker of blockers">
+            <option [value]="blocker.name">{{ blocker.name }}</option>
+          </select>
+        </ng-container>
         <span *ngIf="!(currentTask === task)">{{ task.blocker }}</span>
       </td>
       <td (click)="clickTableRow(task)">
@@ -82,11 +84,13 @@
           {{ task.noSubtasks }}
         </td>
         <td (click)="clickTableRow(task)">
-          <select class="ui dropdown" *ngIf="currentTask === task" [(ngModel)]="task.blocker">
-            <option value="LZ">Too lazy to do Something</option>
-            <option value="CF">Not enough coffee</option>
-            <option value="FD">Its friday already</option>
-          </select>
+          <ng-container *ngIf="currentTask === task">
+              <select class="ui dropdown"
+                      [(ngModel)]="task.blocker"
+                      *ngFor="let blocker of blockers">
+                <option [value]="blocker.name">{{ blocker.name }}</option>
+              </select>
+            </ng-container>
           <span *ngIf="!(currentTask === task)">{{ task.blocker }}</span>
         </td>
         <td (click)="clickTableRow(task)">

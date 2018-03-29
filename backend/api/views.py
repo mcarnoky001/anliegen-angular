@@ -1,7 +1,7 @@
 from django.http import HttpResponse, JsonResponse
 
-from .models import Task, Subtask, Skill, SubtaskSkill, UserSkill
-from .serializers import TaskSerializer, SubtaskSerializer, SkillSerializer, SubtaskSkillSerializer, UserSkillSerializer
+from .models import Task, Subtask, Skill, SubtaskSkill, UserSkill, Blocker
+from .serializers import BlockerSerializer, TaskSerializer, SubtaskSerializer, SkillSerializer, SubtaskSkillSerializer, UserSkillSerializer
 from rest_framework import generics, mixins
 from django.db.models import Q
 from rest_framework.authtoken.models import Token
@@ -9,6 +9,7 @@ from rest_framework.authtoken.models import Token
 class TaskAPIView(mixins.CreateModelMixin, generics.ListAPIView):
     lookup_field        = 'pk'
     serializer_class    = TaskSerializer
+
     def get_queryset(self):
         qs = Task.objects.all()
         query = self.request.GET.get("q")
@@ -26,6 +27,7 @@ class TaskAPIView(mixins.CreateModelMixin, generics.ListAPIView):
 class UserTasksAPIView(generics.ListAPIView):
     lookup_field        = 'status'
     serializer_class    = TaskSerializer
+
     def get_queryset(self):
         qs = Task.objects.all()
         try:
@@ -40,6 +42,17 @@ class UserTasksAPIView(generics.ListAPIView):
             qs = qs.filter(status = status)
         return qs
 
+
+class BlockersAPIView(mixins.CreateModelMixin, generics.ListAPIView):
+    lookup_field        = 'pk'
+    serializer_class    = BlockerSerializer
+
+    def get_queryset(self):
+        qs = Blocker.objects.all()
+        return qs
+
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
 
 class NewTaskRetrieveView(generics.ListAPIView):
     lookup_field        = 'status'
