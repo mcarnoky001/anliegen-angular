@@ -1,12 +1,12 @@
-<div class="ui message transition" *ngIf="message"
+<div class="ui message"
      [class.warning]="class == 'warning'"
      [class.error]="class == 'error'"
      [class.info]="class == 'info'"
-     [class.success]="class == 'success'">
+     [class.success]="class == 'success'"
+     [class.enabled]="message">
   <i class="close icon" (click)="messageService.clearMessage()"></i>
   <div class="content">
-    <div class="header">
-        <i class="trash icon"></i>
+    <div class="header" *ngIf="message">
         {{ message.text }}
     </div>
   </div>

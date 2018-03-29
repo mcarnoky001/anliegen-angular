@@ -38,7 +38,6 @@ export class CurrentTaskClearkComponent implements OnInit {
     this.getOpenTasks();
     this.getBlockedTasks();
     this.getBlockers();
-    ; 
   }
 
   getBlockers() {
@@ -57,6 +56,7 @@ export class CurrentTaskClearkComponent implements OnInit {
     this.userTaskService.getNewTask()
       .subscribe(res => { 
         this.refreshTable();
+        this.messageService.success('New task added to user.');
       });
   }
 
@@ -78,6 +78,7 @@ export class CurrentTaskClearkComponent implements OnInit {
     this.getOpenTasks();
     this.getBlockedTasks();
     this.currentTask = null;
+    this.messageService.success('Table Refreshed.');
   }
 
   saveTask(task) {

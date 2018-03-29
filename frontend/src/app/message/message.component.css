@@ -1,0 +1,12 @@
+.message {
+    position: absolute;
+    top: -5em;
+    left: 6em;
+    right: 6em;
+    z-index: 101;
+    transition: 300ms;
+}
+
+.message.enabled {
+    top:4em;
+}

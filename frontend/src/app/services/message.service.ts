@@ -9,7 +9,7 @@ export class MessageService {
     private subject = new Subject<any>();
     class: any;
 
-    sendMessage(message: any) {
+    private sendMessage(message: any) {
         this.subject.next({ text: message });              
     }
 
@@ -20,25 +20,25 @@ export class MessageService {
     error(message) {
         this.class = 'error';
         this.sendMessage(message);
-        setTimeout(() => this.clearMessage(), 5000);
+        setTimeout(() => this.clearMessage(), 3000);
     }
 
     warning(message) {
         this.class = 'warning';
         this.sendMessage(message);
-        setTimeout(() => this.clearMessage(), 5000);
+        setTimeout(() => this.clearMessage(), 3000);
     }
 
     info(message) {
         this.class = 'info';
         this.sendMessage(message);
-        setTimeout(() => this.clearMessage(), 5000);
+        setTimeout(() => this.clearMessage(), 3000);
     }
 
     success(message) {
         this.class = 'success';
         this.sendMessage(message);
-        setTimeout(() => this.clearMessage(), 5000);
+        setTimeout(() => this.clearMessage(), 3000);
     }
 
     getMessage(): Observable<any> {
