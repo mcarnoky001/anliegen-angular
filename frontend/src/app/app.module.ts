@@ -21,6 +21,7 @@ import { FinalizedTasksClearkComponent } from './finalized-tasks-cleark/finalize
 import { SubtaskTableComponent } from './subtask-table/subtask-table.component';
 import { CurrentTaskClearkComponent } from './current-task-cleark/current-task-cleark.component';
 import { MessageComponent } from './message/message.component';
+import { ClipboardModule } from 'ngx-clipboard';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -44,6 +45,7 @@ const appRoutes: Routes = [
       BrowserModule,
       FormsModule,
       HttpClientModule,
+      ClipboardModule
     ],
   declarations: [
     AppComponent,

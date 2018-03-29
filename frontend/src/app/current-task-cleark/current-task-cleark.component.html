@@ -1,9 +1,21 @@
 <app-message></app-message>
-
 <div class="ui secondary menu">
   <div class="item"><h2>My current tasks</h2></div>
   <div class="right menu">
     <div class="item"><div class="ui button blue" [class.disabled]="openedTaskFlag" (click)="getNewTask()">New Contract</div></div>
+  </div>
+</div>
+<!-- Trigger -->
+
+<div class="row">
+  <div class="col-sm-12">
+    <h3>Copy from text -- text</h3> Click this button, it will copy the text from the input by referring to the <strong>text content</strong>
+    <div class="input-group">
+      <input type="text" class="form-control" [(ngModel)]="text" placeholder="content will be copy after click the copy button">
+      <span class="input-group-btn">
+        <button class="btn btn-default" [class.btn-success]= "isCopied1" type="button" ngxClipboard [cbContent]="text" (cbOnSuccess)="isCopied1 = true">copy</button>
+      </span>
+    </div>
   </div>
 </div>
 
@@ -38,10 +50,12 @@
   <tbody>
     <tr *ngFor="let task of openTasks" [ngClass]="{ selected: currentTask === task }" class="ui form open">
       <td>
-        <i class="copy outline icon large" (click)="copyContractNumber()"></i>
+        <button class="ui icon button" ngxClipboard [cbContent]=task.contractId>
+            <i class="copy outline icon large"></i>
+          </button>
       </td>
       <td (click)="clickTableRow(task)">
-        {{ task.contractId }}
+        <div>{{ task.contractId }}</div>
       </td>
       <td (click)="clickTableRow(task)">
         {{ task.timeOfInit }}
@@ -70,7 +84,9 @@
 
     <tr *ngFor="let task of blockedTasks" [ngClass]="{ selected: currentTask === task }" class="ui form">
         <td>
-          <i class="copy outline icon large" (click)="copyContractNumber()"></i>
+          <button class="ui icon button" ngxClipboard [cbContent]=task.contractId>
+            <i class="copy outline icon large"></i>
+          </button>
         </td>
         <td (click)="clickTableRow(task)">
           {{ task.contractId }}

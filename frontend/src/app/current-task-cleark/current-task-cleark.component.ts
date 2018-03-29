@@ -4,6 +4,8 @@ import { Task } from '../models/task.model';
 import { TaskService } from '../services/task.service';
 import { UserTaskService } from '../services/usertask.service';
 import { MessageService } from '../services/message.service';
+import { ClipboardModule } from 'ngx-clipboard';
+import { FormsModule } from '@angular/forms';
 
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
@@ -32,7 +34,7 @@ export class CurrentTaskClearkComponent implements OnInit {
 
   ngOnInit() {
     this.getOpenTasks();
-    this.getBlockedTasks();
+    this.getBlockedTasks()
   }
 
   getOpenTasks(): void {

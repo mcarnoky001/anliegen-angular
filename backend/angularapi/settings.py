@@ -8,7 +8,7 @@ DEBUG = True
 
 CSRF_COOKIE_SECURE = False # TODO: change to true before production
 
-ALLOWED_HOSTS = ['localhost']
+ALLOWED_HOSTS = ['localhost','127.0.0.1']
 # ALLOWED_HOSTS =  ['project-name.herokuapp.com', '.yourdomain.com']
 
 INSTALLED_APPS = [
