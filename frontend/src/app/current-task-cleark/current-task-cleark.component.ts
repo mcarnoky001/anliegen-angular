@@ -20,7 +20,6 @@ declare var $:any;
 export class CurrentTaskClearkComponent implements OnInit {
 
   blockers: any;
-  openedTaskFlag: boolean = false;
   openTasks: Task[];
   blockedTasks: Task[];
   currentTask: Task;
@@ -37,6 +36,7 @@ export class CurrentTaskClearkComponent implements OnInit {
     this.getOpenTasks();
     this.getBlockedTasks();
     this.getBlockers();
+    ; 
   }
 
   getBlockers() {
@@ -45,17 +45,17 @@ export class CurrentTaskClearkComponent implements OnInit {
   }
 
   getOpenTasks(): void {
-    this.openedTaskFlag = false;
     this.userTaskService.getOpenUserTasks()
       .subscribe(res => {
         this.openTasks = res;
-        if (this.openTasks) this.openedTaskFlag = true;
       });
   }
 
   getNewTask() {
     this.userTaskService.getNewTask()
-      .subscribe(res => this.refreshTable())
+      .subscribe(res => { 
+        this.refreshTable();
+      });
   }
 
   getBlockedTasks(): void {
@@ -76,14 +76,13 @@ export class CurrentTaskClearkComponent implements OnInit {
     this.getOpenTasks();
     this.getBlockedTasks();
     this.currentTask = null;
-    this.messageService.error('error');
   }
 
   saveTask(task) {
     if (this.currentTask.blocker != '') {
       this.taskService.blockTask(task)
         .subscribe(res => {
-          this.refreshTable();      
+          this.refreshTable();     
       });
     }
     else {
