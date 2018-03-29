@@ -68,7 +68,9 @@
         <span *ngIf="!(currentTask == task)">{{ task.note }}</span>
       </td>
       <td>
-        <i class="save outline icon large" (click)="saveTask(task)"></i>
+        <button class="ui icon button basic" (click)="saveTask(task)">
+            <i class="save outline icon"></i>
+        </button>
       </td>
     </tr>
 
@@ -104,7 +106,9 @@
           <span *ngIf="!(currentTask == task)">{{ task.note }}</span>
         </td>
         <td>
-          <i class="save outline icon large" (click)="saveTask(task)"></i>
+          <button class="ui icon button basic" (click)="saveTask(task)">
+              <i class="save outline icon"></i>
+          </button>
         </td>
       </tr>
   </tbody>

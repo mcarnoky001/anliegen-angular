@@ -7,7 +7,7 @@
 }
 
 .ui.blue.button, .ui.blue.buttons .button,
-.ui.toggle.checkbox input:checked~.box:before, 
+.ui.toggle.checkbox input:checked~.box:before,
 .ui.toggle.checkbox input:checked~label:before {
     background: #1e3287!important;
 }
@@ -28,4 +28,3 @@
 .ui.form select {
     padding: 0!important;
 }
-
