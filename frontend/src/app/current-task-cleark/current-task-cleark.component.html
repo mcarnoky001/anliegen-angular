@@ -38,8 +38,8 @@
   <tbody>
     <tr *ngFor="let task of openTasks" [ngClass]="{ selected: currentTask === task }" class="ui form open">
       <td>
-        <button class="ui icon button" ngxClipboard [cbContent]=task.contractId>
-            <i class="copy outline icon large"></i>
+        <button class="ui icon button basic" ngxClipboard [cbContent]=task.contractId>
+            <i class="copy outline icon"></i>
           </button>
       </td>
       <td (click)="clickTableRow(task)">
@@ -74,8 +74,8 @@
 
     <tr *ngFor="let task of blockedTasks" [ngClass]="{ selected: currentTask === task }" class="ui form">
         <td>
-          <button class="ui icon button" ngxClipboard [cbContent]=task.contractId>
-            <i class="copy outline icon large"></i>
+          <button class="ui icon button basic" ngxClipboard [cbContent]=task.contractId>
+            <i class="copy outline icon"></i>
           </button>
         </td>
         <td (click)="clickTableRow(task)">
