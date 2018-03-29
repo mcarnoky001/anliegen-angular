@@ -54,7 +54,7 @@ export class CurrentTaskClearkComponent implements OnInit {
 
   getNewTask() {
     this.userTaskService.getNewTask()
-      .subscribe(res => { 
+      .subscribe(res => {
         this.refreshTable();
         this.messageService.success('New task added to user.');
       });
@@ -70,8 +70,8 @@ export class CurrentTaskClearkComponent implements OnInit {
   	this.currentTask = task;
   }
 
-  copyContractNumber() {
-    
+  copyToClipboard(): void {
+    this.messageService.success('Contract number copied to clipboard.');
   }
 
   refreshTable() {
@@ -85,13 +85,13 @@ export class CurrentTaskClearkComponent implements OnInit {
     if (this.currentTask.blocker != '') {
       this.taskService.blockTask(task)
         .subscribe(res => {
-          this.refreshTable();     
+          this.refreshTable();
       });
     }
     else {
       this.taskService.updateTask(task)
         .subscribe(res => {
-          this.refreshTable();      
+          this.refreshTable();
       });
     }
   }

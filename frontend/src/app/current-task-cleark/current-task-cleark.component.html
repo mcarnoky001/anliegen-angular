@@ -1,4 +1,4 @@
-
+<app-message></app-message>
 <div class="ui secondary menu">
   <div class="item"><h2>My current tasks</h2></div>
   <div class="right menu">
@@ -38,7 +38,7 @@
   <tbody>
     <tr *ngFor="let task of openTasks" [ngClass]="{ selected: currentTask === task }" class="ui form open">
       <td>
-        <button [ngClass]="{ 'basic': currentTask != task, 'inverted': currentTask === task }" class="ui button icon" ngxClipboard [cbContent]=task.contractId>
+        <button [ngClass]="{ 'basic': currentTask != task, 'inverted': currentTask === task }" class="ui button icon" (click)="copyToClipboard()" ngxClipboard [cbContent]=task.contractId>
             <i class="copy outline icon"></i>
           </button>
       </td>
@@ -76,7 +76,7 @@
 
     <tr *ngFor="let task of blockedTasks" [ngClass]="{ selected: currentTask === task }" class="ui form">
         <td>
-          <button [ngClass]="{ 'basic': currentTask != task, 'inverted': currentTask === task }" class="ui button icon" ngxClipboard [cbContent]=task.contractId>
+          <button [ngClass]="{ 'basic': currentTask != task, 'inverted': currentTask === task }" class="ui button icon" (click)="copyToClipboard()" ngxClipboard [cbContent]=task.contractId>
             <i class="copy outline icon"></i>
           </button>
         </td>
