@@ -7,18 +7,6 @@
 </div>
 <!-- Trigger -->
 
-<div class="row">
-  <div class="col-sm-12">
-    <h3>Copy from text -- text</h3> Click this button, it will copy the text from the input by referring to the <strong>text content</strong>
-    <div class="input-group">
-      <input type="text" class="form-control" [(ngModel)]="text" placeholder="content will be copy after click the copy button">
-      <span class="input-group-btn">
-        <button class="btn btn-default" [class.btn-success]= "isCopied1" type="button" ngxClipboard [cbContent]="text" (cbOnSuccess)="isCopied1 = true">copy</button>
-      </span>
-    </div>
-  </div>
-</div>
-
 <div class="ui secondary menu form">
   <a class="item" (click)="refreshTable()"><h3><i class="sync alternate icon"></i> Refresh table</h3></a>
   <div class="right menu">
@@ -45,7 +33,7 @@
     <th>Reason for blocker</th>
     <th>Note</th>
     <th></th>
-    
+
   </tr></thead>
   <tbody>
     <tr *ngFor="let task of openTasks" [ngClass]="{ selected: currentTask === task }" class="ui form open">
