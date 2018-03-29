@@ -3,11 +3,11 @@
      [class.error]="class == 'error'"
      [class.info]="class == 'info'"
      [class.success]="class == 'success'">
-  <i class="close icon" (click)="message=null"></i>
+  <i class="close icon" (click)="messageService.clearMessage()"></i>
   <div class="content">
     <div class="header">
-      {{ message.text }}
+        <i class="trash icon"></i>
+        {{ message.text }}
     </div>
-    <p>We're fetching that content for you.</p>
   </div>
 </div>

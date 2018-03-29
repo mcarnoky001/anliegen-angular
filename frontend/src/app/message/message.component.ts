@@ -18,20 +18,13 @@ export class MessageComponent implements OnInit {
   constructor(private messageService: MessageService) {
     this.subscription = this.messageService.getMessage()
       .subscribe(message => { 
-        this.message = message;
         this.class = this.messageService.class; 
+        this.message = message;
       });
   }
 
   ngOnInit() {
-    $('.message .close')
-      .on('click', function() {
-        $(this)
-          .closest('.message')
-          .transition('fade')
-        ;
-      })
-    ;
+   
   }
 
   ngOnDestroy() {

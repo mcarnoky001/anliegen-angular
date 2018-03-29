@@ -6,6 +6,7 @@ import { UserTaskService } from '../services/usertask.service';
 import { MessageService } from '../services/message.service';
 import { ClipboardModule } from 'ngx-clipboard';
 import { FormsModule } from '@angular/forms';
+import { BlockerService } from '../services/blocker.service';
 
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
@@ -16,11 +17,11 @@ declare var $:any;
   selector: 'app-current-task-cleark',
   templateUrl: './current-task-cleark.component.html',
   styleUrls: ['./current-task-cleark.component.css'],
-  providers: [UserTaskService, TaskService]
+  providers: [UserTaskService, TaskService, BlockerService]
 })
 export class CurrentTaskClearkComponent implements OnInit {
 
-  openedTaskFlag: boolean = false;
+  blockers: any;
   openTasks: Task[];
   blockedTasks: Task[];
   currentTask: Task;
@@ -29,26 +30,34 @@ export class CurrentTaskClearkComponent implements OnInit {
   constructor(
     private userTaskService: UserTaskService,
     private taskService: TaskService,
+    private blockerService: BlockerService,
     private messageService: MessageService
   ) { }
 
   ngOnInit() {
     this.getOpenTasks();
-    this.getBlockedTasks()
+    this.getBlockedTasks();
+    this.getBlockers();
+    ; 
+  }
+
+  getBlockers() {
+    this.blockerService.getBlockers()
+      .subscribe(res => this.blockers = res);
   }
 
   getOpenTasks(): void {
-    this.openedTaskFlag = false;
     this.userTaskService.getOpenUserTasks()
       .subscribe(res => {
         this.openTasks = res;
-        if (this.openTasks.length > 0) this.openedTaskFlag = true;
       });
   }
 
   getNewTask() {
     this.userTaskService.getNewTask()
-      .subscribe(res => this.refreshTable())
+      .subscribe(res => { 
+        this.refreshTable();
+      });
   }
 
   getBlockedTasks(): void {
@@ -69,15 +78,13 @@ export class CurrentTaskClearkComponent implements OnInit {
     this.getOpenTasks();
     this.getBlockedTasks();
     this.currentTask = null;
-    this.messageService.sendMessage({message: 'Refreshed', class: 'info'});
-     setTimeout(() => {this.messageService.clearMessage()}, 13000);
   }
 
   saveTask(task) {
     if (this.currentTask.blocker != '') {
       this.taskService.blockTask(task)
         .subscribe(res => {
-          this.refreshTable();      
+          this.refreshTable();     
       });
     }
     else {

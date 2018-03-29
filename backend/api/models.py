@@ -1,6 +1,6 @@
 from django.db import models
 from django.conf import settings
-
+from datetime import datetime
 from rest_framework.reverse import reverse as api_reverse
 
 
@@ -10,8 +10,8 @@ class Task(models.Model):
     description = models.TextField()
     contractId = models.IntegerField()
     status = models.IntegerField()
-    timeOfInit = models.DateTimeField()
-    noSubtasks = models.IntegerField()
+    timeOfInit = models.DateTimeField(default=datetime.now())
+    noSubtasks = models.IntegerField(blank=True, null=True)
     blocker = models.CharField(max_length=200, blank=True, null=True)
     note = models.CharField(max_length=250, blank=True, null=True)
 
@@ -21,6 +21,13 @@ class Task(models.Model):
     @property
     def owner(self):
         return self.user
+
+
+class Blocker(models.Model):
+    name = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.name
 
 
 class Subtask(models.Model):
