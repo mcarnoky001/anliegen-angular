@@ -20,6 +20,8 @@ export class TasksComponent implements OnInit {
 
   ngOnInit() {
     this.getTasks();
+    console.log('greetings');
+    
   }
   currentTask: Task;
   tasks: Observable<any>;

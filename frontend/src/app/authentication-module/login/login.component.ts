@@ -35,8 +35,7 @@ export class LoginComponent implements OnInit  {
           localStorage.setItem('app-token', tokenJSON.token);
           localStorage.setItem('app-login', 'true');
           if (this.authService.isLoggedIn) {
-            let redirect = this.authService.redirectUrl;
-            this.router.navigate([redirect]);
+            this.router.navigate([this.authService.redirectUrl]);
           }
       });
     }

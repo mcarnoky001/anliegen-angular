@@ -6,12 +6,11 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { TasksComponent } from './administration/tasks/tasks.component';
-import { MainContentComponent } from './main-content/main-content.component';
 import { NewTaskComponent } from './administration/tasks/new-task/new-task.component';
 import { SubtasksComponent } from './administration/subtasks/subtasks.component';
 import { SkillsComponent } from './administration/skills/skills.component';
 import { SelectedTaskComponent } from './administration/selected-task/selected-task.component';
-import { MainMenuComponent } from './main-content/main-menu/main-menu.component';
+import { MainMenuComponent } from './main-menu/main-menu.component';
 
 import { HttpConnectionService } from './services/http-connection.service';
 
@@ -21,13 +20,12 @@ import { ClearkModule } from './cleark-module/cleark.module';
 import { MessageModule } from './message/message.module';
 
 const appRoutes: Routes = [
-  { path: '', component: SelectedTaskComponent  },
-  { path: 'home', component: SelectedTaskComponent  },
-  { path: 'tasks', component: TasksComponent  },
+  { path: '', redirectTo: 'cleark/currenttask', pathMatch: 'full'  },
+  { path: 'tasks', component: TasksComponent },
   { path: 'subtasks', component: SubtasksComponent  },
-  { path: 'skills', component: SkillsComponent  },
-  { path: 'newtask', component: NewTaskComponent  },
-  { path: 'selectedtask', component: SelectedTaskComponent  }
+  { path: 'skills', component: SkillsComponent },
+  { path: 'newtask', component: NewTaskComponent },
+  { path: 'selectedtask', component: SelectedTaskComponent }
 ];
 
 @NgModule({
@@ -43,7 +41,6 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     TasksComponent,
-    MainContentComponent,
     NewTaskComponent,
     SubtasksComponent,
     SkillsComponent,

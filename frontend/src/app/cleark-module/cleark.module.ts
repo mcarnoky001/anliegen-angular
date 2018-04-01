@@ -13,11 +13,13 @@ const clearkRoutes: Routes = [
   {
     path: 'cleark',
     children: [
-      { path: 'finalizedtasks', component: FinalizedTasksClearkComponent  },
-      { path: 'currenttask', component: CurrentTaskClearkComponent  }
+      { path: 'finalizedtasks', component: FinalizedTasksClearkComponent },
+      { path: 'currenttask', component: CurrentTaskClearkComponent }
     ]
   }
 ];
+
+
 @NgModule({
   imports: [
     RouterModule.forChild(clearkRoutes),

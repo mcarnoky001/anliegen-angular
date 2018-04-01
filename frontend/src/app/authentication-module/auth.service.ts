@@ -13,7 +13,7 @@ import 'rxjs/add/operator/delay';
 export class AuthService {
 
   readonly EXTENDED_URL = this.httpConnection.ROOT_URL + 'api-token-auth/';
-  redirectUrl = 'cleark/currenttask'
+  redirectUrl = '';
 
   constructor(
     private http: HttpClient,
