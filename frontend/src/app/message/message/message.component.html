@@ -1,9 +1,13 @@
-<div class="ui message"
+<div class="ui icon message"
      [class.warning]="class == 'warning'"
      [class.error]="class == 'error'"
      [class.info]="class == 'info'"
      [class.success]="class == 'success'"
      [class.enabled]="message">
+  <i class="check icon" *ngIf="class == 'success'"></i>
+  <i class="info circle icon" *ngIf="class == 'info'"></i>
+  <i class="times circle icon" *ngIf="class == 'error'"></i>
+  <i class="exclamation triangle icon" *ngIf="class == 'warning'"></i>
   <i class="close icon" (click)="messageService.clearMessage()"></i>
   <div class="content">
     <div class="header" *ngIf="message">

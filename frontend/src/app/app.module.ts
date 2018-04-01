@@ -12,14 +12,13 @@ import { SubtasksComponent } from './administration/subtasks/subtasks.component'
 import { SkillsComponent } from './administration/skills/skills.component';
 import { SelectedTaskComponent } from './administration/selected-task/selected-task.component';
 import { MainMenuComponent } from './main-content/main-menu/main-menu.component';
-import { MessageComponent } from './message/message.component';
 
-import { MessageService } from './services/message.service';
 import { HttpConnectionService } from './services/http-connection.service';
 
 
 import { AuthenticationModule } from './authentication-module/authentication.module';
 import { ClearkModule } from './cleark-module/cleark.module';
+import { MessageModule } from './message/message.module';
 
 const appRoutes: Routes = [
   { path: '', component: SelectedTaskComponent  },
@@ -38,7 +37,8 @@ const appRoutes: Routes = [
       FormsModule,
       HttpClientModule,
       AuthenticationModule,
-      ClearkModule
+      ClearkModule,
+      MessageModule
     ],
   declarations: [
     AppComponent,
@@ -48,10 +48,9 @@ const appRoutes: Routes = [
     SubtasksComponent,
     SkillsComponent,
     SelectedTaskComponent,
-    MainMenuComponent,
-    MessageComponent
+    MainMenuComponent
   ],
   bootstrap:    [ AppComponent ],
-  providers: [HttpConnectionService, MessageService]
+  providers: [HttpConnectionService]
 })
 export class AppModule { }

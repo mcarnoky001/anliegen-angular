@@ -7,6 +7,7 @@ export class MessageService {
 
     constructor() { }
     private subject = new Subject<any>();
+    private showTime = 1500;
     class: any;
 
     private sendMessage(message: any) {
@@ -20,25 +21,29 @@ export class MessageService {
     error(message) {
         this.class = 'error';
         this.sendMessage(message);
-        setTimeout(() => this.clearMessage(), 3000);
+        this.setClearMessage();
     }
 
     warning(message) {
         this.class = 'warning';
         this.sendMessage(message);
-        setTimeout(() => this.clearMessage(), 3000);
+        this.setClearMessage();
     }
 
     info(message) {
         this.class = 'info';
         this.sendMessage(message);
-        setTimeout(() => this.clearMessage(), 3000);
+        this.setClearMessage();
     }
 
     success(message) {
         this.class = 'success';
         this.sendMessage(message);
-        setTimeout(() => this.clearMessage(), 3000);
+        this.setClearMessage();
+    }
+
+    setClearMessage() {
+        setTimeout(() => this.clearMessage(), this.showTime);
     }
 
     getMessage(): Observable<any> {

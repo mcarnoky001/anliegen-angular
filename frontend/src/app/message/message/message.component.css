@@ -1,0 +1,14 @@
+.ui.message {
+    position: absolute;
+    top: -6em;
+    left: 0em;
+    right: 0em;
+    z-index: 101;
+    transition: 300ms;
+    padding: 1em 1.5em!important;
+    border-radius: 0;
+}
+
+.message.enabled {
+    top: 0em;
+}

@@ -3,7 +3,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Task } from '../../models/task.model';
 import { TaskService } from '../../services/task.service';
 import { UserTaskService } from '../../services/usertask.service';
-import { MessageService } from '../../services/message.service';
+import { MessageService } from '../../message/message.service';
 import { ClipboardModule } from 'ngx-clipboard';
 import { FormsModule } from '@angular/forms';
 import { BlockerService } from '../../services/blocker.service';
@@ -78,7 +78,6 @@ export class CurrentTaskClearkComponent implements OnInit {
     this.getOpenTasks();
     this.getBlockedTasks();
     this.currentTask = null;
-    this.messageService.success('Table Refreshed.');
   }
 
   saveTask(task) {
