@@ -11,41 +11,34 @@ import { NewTaskComponent } from './administration/tasks/new-task/new-task.compo
 import { SubtasksComponent } from './administration/subtasks/subtasks.component';
 import { SkillsComponent } from './administration/skills/skills.component';
 import { SelectedTaskComponent } from './administration/selected-task/selected-task.component';
-import { AuthGuard } from './services/auth-guard.service';
-import { AuthService } from './services/auth.service';
+import { MainMenuComponent } from './main-content/main-menu/main-menu.component';
+import { MessageComponent } from './message/message.component';
+
 import { MessageService } from './services/message.service';
 import { HttpConnectionService } from './services/http-connection.service';
-import { LoginComponent } from './authentication/login/login.component';
-import { MainMenuComponent } from './main-content/main-menu/main-menu.component';
-import { FinalizedTasksClearkComponent } from './finalized-tasks-cleark/finalized-tasks-cleark.component';
-import { SubtaskTableComponent } from './subtask-table/subtask-table.component';
-import { CurrentTaskClearkComponent } from './current-task-cleark/current-task-cleark.component';
-import { MessageComponent } from './message/message.component';
-import { ClipboardModule } from 'ngx-clipboard';
+
+
+import { AuthenticationModule } from './authentication-module/authentication.module';
+import { ClearkModule } from './cleark-module/cleark.module';
 
 const appRoutes: Routes = [
-  { path: 'login', component: LoginComponent },
   { path: '', component: SelectedTaskComponent  },
   { path: 'home', component: SelectedTaskComponent  },
   { path: 'tasks', component: TasksComponent  },
   { path: 'subtasks', component: SubtasksComponent  },
   { path: 'skills', component: SkillsComponent  },
   { path: 'newtask', component: NewTaskComponent  },
-  { path: 'selectedtask', component: SelectedTaskComponent  },
-  { path: 'finalizedtaskscleark', component: FinalizedTasksClearkComponent  },
-  { path: 'currenttaskcleark', component: CurrentTaskClearkComponent  }
+  { path: 'selectedtask', component: SelectedTaskComponent  }
 ];
 
 @NgModule({
   imports:      [
-      RouterModule.forRoot(
-        appRoutes,
-        // { enableTracing: true } // <-- debugging purposes only
-      ),
+      RouterModule.forRoot(appRoutes),
       BrowserModule,
       FormsModule,
       HttpClientModule,
-      ClipboardModule
+      AuthenticationModule,
+      ClearkModule
     ],
   declarations: [
     AppComponent,
@@ -55,14 +48,10 @@ const appRoutes: Routes = [
     SubtasksComponent,
     SkillsComponent,
     SelectedTaskComponent,
-    LoginComponent,
     MainMenuComponent,
-    FinalizedTasksClearkComponent,
-    SubtaskTableComponent,
-    CurrentTaskClearkComponent,
     MessageComponent
   ],
   bootstrap:    [ AppComponent ],
-  providers: [AuthGuard, AuthService, HttpConnectionService, MessageService]
+  providers: [HttpConnectionService, MessageService]
 })
 export class AppModule { }

@@ -1,12 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
-import { Task } from '../models/task.model';
-import { TaskService } from '../services/task.service';
-import { UserTaskService } from '../services/usertask.service';
-import { MessageService } from '../services/message.service';
+import { Task } from '../../models/task.model';
+import { TaskService } from '../../services/task.service';
+import { UserTaskService } from '../../services/usertask.service';
+import { MessageService } from '../../services/message.service';
 import { ClipboardModule } from 'ngx-clipboard';
 import { FormsModule } from '@angular/forms';
-import { BlockerService } from '../services/blocker.service';
+import { BlockerService } from '../../services/blocker.service';
 
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';

@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, OnChanges ,SimpleChanges} from '@angular/core';
 
-import { Task } from '../models/task.model';
-import { Subtask } from '../models/Subtask.model';
-import { SubtaskService } from '../services/subtask.service';
+import { Task } from '../../models/task.model';
+import { Subtask } from '../../models/Subtask.model';
+import { SubtaskService } from '../../services/subtask.service';
 
 import { Observable } from 'rxjs/Observable';
 declare var $:any;

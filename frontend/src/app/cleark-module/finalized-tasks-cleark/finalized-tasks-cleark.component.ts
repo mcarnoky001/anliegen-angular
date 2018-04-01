@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Task } from '../models/task.model';
-import { TaskService } from '../services/task.service';
-import { UserTaskService } from '../services/usertask.service';
+import { Task } from '../../models/task.model';
+import { TaskService } from '../../services/task.service';
+import { UserTaskService } from '../../services/usertask.service';
 
 import { Observable } from 'rxjs/Observable';
 declare var $:any;

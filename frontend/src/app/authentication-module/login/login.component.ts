@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router }      from '@angular/router';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../auth.service';
 import { HttpConnectionService } from '../../services/http-connection.service';
 
 @Component({
@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit  {
           localStorage.setItem('app-token', tokenJSON.token);
           localStorage.setItem('app-login', 'true');
           if (this.authService.isLoggedIn) {
-            let redirect = this.authService.redirectUrl ? this.authService.redirectUrl : 'finalizedtaskscleark';
+            let redirect = this.authService.redirectUrl;
             this.router.navigate([redirect]);
           }
       });

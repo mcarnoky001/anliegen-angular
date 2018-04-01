@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { HttpConnectionService } from './http-connection.service';
+import { HttpConnectionService } from '../services/http-connection.service';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
@@ -13,6 +13,7 @@ import 'rxjs/add/operator/delay';
 export class AuthService {
 
   readonly EXTENDED_URL = this.httpConnection.ROOT_URL + 'api-token-auth/';
+  redirectUrl = 'cleark/currenttask'
 
   constructor(
     private http: HttpClient,
@@ -22,9 +23,6 @@ export class AuthService {
   isLoggedIn () {
     return true;
   }
-
-  // store the URL so we can redirect after logging in
-  redirectUrl: string;
 
   login(username, password): Observable<any> {
     let user = { 'username': username, 'password': password };
