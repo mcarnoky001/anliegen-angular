@@ -7,6 +7,7 @@ import { AuthGuard } from './auth-guard.service';
 import { AuthService } from './auth.service';
 
 import { LoginComponent } from './login/login.component';
+import { UserService } from './user.service';
 
 const authenticationRoutes: Routes = [
   { path: 'login', component: LoginComponent  },
@@ -20,6 +21,6 @@ const authenticationRoutes: Routes = [
     FormsModule
   ],
   declarations: [LoginComponent],
-  providers: [AuthGuard, AuthService]
+  providers: [AuthGuard, UserService, AuthService]
 })
 export class AuthenticationModule { }

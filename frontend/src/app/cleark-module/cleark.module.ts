@@ -8,6 +8,7 @@ import { CurrentTaskClearkComponent } from './current-task-cleark/current-task-c
 import { SubtaskTableComponent } from './subtask-table/subtask-table.component';
 
 import { ClipboardModule } from 'ngx-clipboard';
+import { AuthGuard } from '../authentication-module/auth-guard.service';
 
 const clearkRoutes: Routes = [
   {
@@ -15,7 +16,8 @@ const clearkRoutes: Routes = [
     children: [
       { path: 'finalizedtasks', component: FinalizedTasksClearkComponent },
       { path: 'currenttask', component: CurrentTaskClearkComponent }
-    ]
+    ],
+    canActivate: [AuthGuard]
   }
 ];
 

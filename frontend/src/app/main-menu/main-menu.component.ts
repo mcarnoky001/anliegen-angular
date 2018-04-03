@@ -8,8 +8,7 @@ declare var $:any;
 @Component({
   selector: 'app-main-menu',
   templateUrl: './main-menu.component.html',
-  styleUrls: ['./main-menu.component.css'],
-  providers: [ AuthService ]
+  styleUrls: ['./main-menu.component.css']
 })
 export class MainMenuComponent implements OnInit {
 
@@ -24,6 +23,10 @@ export class MainMenuComponent implements OnInit {
   logout() {
     this.authService.logout();
     this.router.navigate(['login'])
+  }
+
+  getUsername() {
+    return localStorage.getItem('app-username');
   }
 
 }
