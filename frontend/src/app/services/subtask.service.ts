@@ -30,6 +30,12 @@ export class SubtaskService {
     }
   }
 
+  getSkillsForSubtask(id) {
+    let url = this.httpConnection.ROOT_URL + 'subtaskskills?id=' + id;
+    console.log(url);
+    return this.http.get(url);
+  }
+
   getSubtasks(searchQuery: String): Observable<any> {
     return this.http.get(this.EXTENDED_URL + '?q=' + searchQuery);
   }

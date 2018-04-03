@@ -192,3 +192,18 @@ class UserView(generics.RetrieveAPIView):
         user = User.objects.filter(pk=tokenObj.user_id)
         data = serializers.serialize('json', list(user))
         return HttpResponse(data, content_type="application/json")
+
+
+class SubtaskSkillView(generics.RetrieveAPIView):
+    pass
+    model       = SubtaskSkill
+    serializer_class    = SubtaskSkillSerializer
+
+    def retrieve(self, request, pk=None):
+        subtask_id = self.request.GET.get('id')
+        skills = SubtaskSkill.objects.filter(subtask=subtask_id)
+        skillsIds = []
+        for s in skills:
+            skillsIds.append(s.skill)
+        data = serializers.serialize('json', list(skillsIds))
+        return HttpResponse(data, content_type="application/json")

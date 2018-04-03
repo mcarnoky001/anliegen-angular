@@ -5,19 +5,21 @@ import { Subtask } from '../../models/Subtask.model';
 import { SubtaskService } from '../../services/subtask.service';
 
 import { Observable } from 'rxjs/Observable';
+import { SkillService } from '../../services/skill.service';
 declare var $:any;
 
 @Component({
   selector: 'app-subtask-table',
   templateUrl: './subtask-table.component.html',
   styleUrls: ['./subtask-table.component.css'],
-  providers: [SubtaskService]
+  providers: [SubtaskService, SkillService]
 })
 export class SubtaskTableComponent implements OnInit {
 
   searchQuery: String = '';
   subtasks : Observable<Subtask[]>;
-  constructor(private subtaskService: SubtaskService) { }
+  skills: any[];
+  constructor(private subtaskService: SubtaskService, private skillService: SkillService) { }
 
   ngOnInit() {
   	this.getSubTasks();
@@ -32,12 +34,32 @@ export class SubtaskTableComponent implements OnInit {
 
   getSubTasks(): void {
     this.subtaskService.getSubtaskByTaskId(this.task.pk)
-      .subscribe(res => this.subtasks = res);
+      .subscribe(res => {
+        this.subtasks = res;
+        this.subtasks.forEach(el => this.getSkills(el));
+      });
   }
 
   tasks: Observable<any>;
 
   clickTableRow(task){
+
+  }
+
+  getSkills(subtask) {
+    this.subtaskService.getSkillsForSubtask(subtask.pk)
+      .subscribe(res => {
+        let skills = res;
+        console.log(skills);
+        this.appendSkills(skills, subtask);
+      });
+  }
+
+  appendSkills(skillsJSON, subtask) {
+    subtask.skills = []
+    skillsJSON.forEach(element => {
+      subtask.skills.push(element.fields.name);
+    });
   }
 
 }

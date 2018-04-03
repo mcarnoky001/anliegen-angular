@@ -10,8 +10,6 @@ import { AuthService } from './authentication-module/auth.service';
   providers: [AuthService]
 })
 export class AppComponent  {
-  name = 'Angular 5';
-  text = 'This is text before click.';
 
   constructor(private authService: AuthService) {}
 

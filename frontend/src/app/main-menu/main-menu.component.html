@@ -1,36 +1,38 @@
-<app-message></app-message>
-<nav class="ui borderless menu blue_header">
-  <div class="ui container">
-    <img src="../assets/img/allianz_logo.PNG" alt="logo" class="ui image logo item">
-    <div class="item">Moderne Arbeitssteurung</div>
-    <div class="right menu">
-      <a class="item"><i class="logout icon"></i></a>
-      <a class="ui dropdown item" tabindex="0">Administration<i class="dropdown icon"></i>
+
+<div>
+  <nav class="ui borderless menu blue_header">
+    <div class="ui container">
+      <img src="../assets/img/allianz_logo.PNG" alt="logo" class="ui image logo item">
+      <div class="item">Moderne Arbeitssteurung</div>
+      <div class="right menu">
+        <a class="item"><i class="logout icon"></i></a>
+        <a class="ui dropdown item" tabindex="0">Administration<i class="dropdown icon"></i>
+          <div class="menu transition hidden" tabindex="-1">
+            <a class="item" routerLink="tasks">Tasks</a>
+            <a class="item" routerLink="subtasks">Subtasks</a>
+            <a class="item" routerLink="skills">Skills</a>
+            <a class="item" routerLink="selectedtask">Selected Task</a>
+          </div>
+        </a>
+        <a class="item">
+          <i class="user icon"></i>
+          {{ getUsername() }}
+        </a>
+        <a class="item" (click)="logout()"><i class="power off icon"></i></a>
+      </div>
+    </div>
+  </nav>
+  <nav class="ui borderless menu gray_header">
+    <div class="ui container">
+      <a class="item" routerLink="cleark/currenttask">Current Task</a>
+      <a class="item" routerLink="cleark/finalizedtasks">Completed Tasks</a>
+      <a class="ui dropdown item" tabindex="0">Management<i class="dropdown icon"></i>
         <div class="menu transition hidden" tabindex="-1">
-          <a class="item" routerLink="tasks">Tasks</a>
-          <a class="item" routerLink="subtasks">Subtasks</a>
-          <a class="item" routerLink="skills">Skills</a>
-          <a class="item" routerLink="selectedtask">Selected Task</a>
+          <a class="item" routerLink="">Skills</a>
+          <a class="item" routerLink="">Users</a>
+          <a class="item" routerLink="">Tasks</a>
         </div>
       </a>
-      <a class="item">
-        <i class="user icon"></i>
-        {{ getUsername() }}
-      </a>
-      <a class="item" (click)="logout()"><i class="power off icon"></i></a>
     </div>
-  </div>
-</nav>
-<nav class="ui borderless menu gray_header">
-  <div class="ui container">
-    <a class="item" routerLink="cleark/currenttask">Current Task</a>
-    <a class="item" routerLink="cleark/finalizedtasks">Completed Tasks</a>
-    <a class="ui dropdown item" tabindex="0">Management<i class="dropdown icon"></i>
-      <div class="menu transition hidden" tabindex="-1">
-        <a class="item" routerLink="">Skills</a>
-        <a class="item" routerLink="">Users</a>
-        <a class="item" routerLink="">Tasks</a>
-      </div>
-    </a>
-  </div>
-</nav>
+  </nav>
+</div>

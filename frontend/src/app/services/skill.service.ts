@@ -33,6 +33,10 @@ export class SkillService {
     return this.http.delete(url, this.httpConnection.getHttpOptions());
   }
 
+  getSkillById(id) {
+    return this.http.get(this.EXTENDED_URL + '?id=' + id);
+  }
+
   updateSkill(data: Skill) {
     const url = `${this.EXTENDED_URL}/${data.pk}/`;
     return this.http.put(url, data, this.httpConnection.getHttpOptions());
