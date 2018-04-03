@@ -81,7 +81,7 @@ export class CurrentTaskClearkComponent implements OnInit {
   }
 
   saveTask(task) {
-    if (this.currentTask.blocker != '') {
+    if (this.currentTask.blocker.length) {
       this.taskService.blockTask(task)
         .subscribe(res => {
           this.refreshTable();
