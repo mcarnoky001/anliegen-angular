@@ -1,7 +1,8 @@
 from django.http import HttpResponse, JsonResponse
-
+from django.core import serializers
+from django.contrib.auth.models import User
 from .models import Task, Subtask, Skill, SubtaskSkill, UserSkill, Blocker
-from .serializers import BlockerSerializer, TaskSerializer, SubtaskSerializer, SkillSerializer, SubtaskSkillSerializer, UserSkillSerializer
+from .serializers import BlockerSerializer, TaskSerializer, SubtaskSerializer, SkillSerializer, SubtaskSkillSerializer, UserSkillSerializer, UserSerializer
 from rest_framework import generics, mixins
 from django.db.models import Q
 from rest_framework.authtoken.models import Token
@@ -169,3 +170,25 @@ class UserSkillRudView(generics.RetrieveUpdateDestroyAPIView):
 
     def get_queryset(self):
         return UserSkill.objects.all()
+
+
+class UserAPIView(generics.ListAPIView):
+    lookup_field        = 'pk'
+    serializer_class    = UserSerializer
+
+    def get_queryset(self):
+        qs = User.objects.all()
+        return qs
+
+
+class UserView(generics.RetrieveAPIView):
+    pass
+    model       = User
+    serializer_class    = UserSerializer
+
+    def retrieve(self, request, pk=None):
+        token = self.request.GET.get('token')
+        tokenObj = Token.objects.get(key=token)
+        user = User.objects.filter(pk=tokenObj.user_id)
+        data = serializers.serialize('json', list(user))
+        return HttpResponse(data, content_type="application/json")

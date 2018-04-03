@@ -1,5 +1,5 @@
 from rest_framework import serializers
-
+from django.contrib.auth.models import User
 from .models import Task, Subtask, Skill, SubtaskSkill, UserSkill, Blocker
 
 
@@ -75,3 +75,13 @@ class UserSkillSerializer(serializers.ModelSerializer):
             'skill',
         ]
         read_only_fields = ['pk']
+
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = [
+            'pk',
+            'username', 
+            'email'
+        ]

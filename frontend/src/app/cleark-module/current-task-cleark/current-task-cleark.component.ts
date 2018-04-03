@@ -70,8 +70,8 @@ export class CurrentTaskClearkComponent implements OnInit {
   	this.currentTask = task;
   }
 
-  copyToClipboard(): void {
-    this.messageService.success('Contract number copied to clipboard.');
+  copyToClipboard(task): void {
+    this.messageService.info(`Contract number ${task.contractId} copied to clipboard.`);
   }
 
   refreshTable() {

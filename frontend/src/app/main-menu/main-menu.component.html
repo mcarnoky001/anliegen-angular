@@ -13,6 +13,10 @@
           <a class="item" routerLink="selectedtask">Selected Task</a>
         </div>
       </a>
+      <a class="item">
+        <i class="user icon"></i>
+        {{ getUsername() }}
+      </a>
       <a class="item" (click)="logout()"><i class="power off icon"></i></a>
     </div>
   </div>

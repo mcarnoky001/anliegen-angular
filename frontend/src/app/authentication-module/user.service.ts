@@ -10,28 +10,21 @@ import 'rxjs/add/operator/delay';
 
 
 @Injectable()
-export class AuthService {
+export class UserService {
 
-  readonly EXTENDED_URL = this.httpConnection.ROOT_URL + 'api-token-auth/';
-  redirectUrl = '';
+  readonly EXTENDED_URL = this.httpConnection.ROOT_URL;
 
   constructor(
     private http: HttpClient,
     private httpConnection: HttpConnectionService
   ) { }
 
-  isLoggedIn () {
-    let token = localStorage.getItem('app-token');
-    return token != '';
+  login(): Observable<any> {
+    return this.http.get(`${this.EXTENDED_URL}userbytoken?token=${this.getToken()}`);
   }
 
-  login(username, password): Observable<any> {
-    let user = { 'username': username, 'password': password };
-    return this.http.post(this.EXTENDED_URL, user);
-  }
-
-  logout(): void {
-    localStorage.setItem('app-token', '');
+  getToken() {
+      return localStorage.getItem('app-token');
   }
 
 }
