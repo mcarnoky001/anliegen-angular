@@ -5,7 +5,6 @@ export class Subtask {
   description;
   task;
   status;
-  skills;
 
   constructor(
     pk,
@@ -13,8 +12,7 @@ export class Subtask {
     user,
     description,
     task,
-    status,
-    skills
+    status
   ) {
     this.pk = pk;
     this.name = name;
@@ -22,7 +20,6 @@ export class Subtask {
     this.description = description;
     this.task = task;
     this.status = status;
-    this.skills = skills;
   }
 
 

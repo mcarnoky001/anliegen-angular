@@ -50,7 +50,6 @@ export class SubtaskTableComponent implements OnInit {
     this.subtaskService.getSkillsForSubtask(subtask.pk)
       .subscribe(res => {
         let skills = res;
-        console.log(skills);
         this.appendSkills(skills, subtask);
       });
   }

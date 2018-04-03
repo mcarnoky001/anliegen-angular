@@ -32,7 +32,6 @@ export class SubtaskService {
 
   getSkillsForSubtask(id) {
     let url = this.httpConnection.ROOT_URL + 'subtaskskills?id=' + id;
-    console.log(url);
     return this.http.get(url);
   }
 
