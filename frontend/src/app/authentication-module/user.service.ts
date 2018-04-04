@@ -57,6 +57,17 @@ export class UserService {
       return user;
   }
 
+  sufficientSkillsForSubtask(subtask) {
+    if(!subtask.skills) { return true; }
+    let userSkills = this.getUser().skills;
+    let subtaskSkills = subtask.skills;
+    let result = true;
+    subtaskSkills.forEach(element => {
+        if(userSkills.indexOf(element) == -1) result = false;
+    });
+    return result;
+  }
+
   saveUser(user) {
     localStorage.setItem('app-user', JSON.stringify(user));
   }

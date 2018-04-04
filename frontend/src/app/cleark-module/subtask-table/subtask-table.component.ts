@@ -6,6 +6,7 @@ import { SubtaskService } from '../../services/subtask.service';
 
 import { Observable } from 'rxjs/Observable';
 import { SkillService } from '../../services/skill.service';
+import { UserService } from '../../authentication-module/user.service';
 declare var $:any;
 
 @Component({
@@ -19,7 +20,7 @@ export class SubtaskTableComponent implements OnInit {
   searchQuery: String = '';
   subtasks : Observable<Subtask[]>;
   skills: any[];
-  constructor(private subtaskService: SubtaskService, private skillService: SkillService) { }
+  constructor(private subtaskService: SubtaskService, private skillService: SkillService, private userService: UserService) { }
 
   ngOnInit() {
   	this.getSubTasks();

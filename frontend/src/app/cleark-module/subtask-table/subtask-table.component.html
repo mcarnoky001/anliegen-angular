@@ -7,7 +7,7 @@
 	<th>Time of Initiation</th>
 </tr></thead>
 <tbody>
-	<tr *ngFor="let subtask of subtasks">
+	<tr *ngFor="let subtask of subtasks" [class.error]="!userService.sufficientSkillsForSubtask(subtask)">
 		<td *ngIf="subtask.skills">
 			<span *ngFor="let skill of subtask.skills" class="ui label">{{ skill }}</span>
 		</td>
