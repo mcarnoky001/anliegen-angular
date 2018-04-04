@@ -9,11 +9,13 @@
 <div class="ui secondary menu form">
   <a class="item" (click)="refreshTable()"><h3><i class="sync alternate icon"></i> Refresh table</h3></a>
   <div class="right menu">
+    <a class="ui button small item green" (click)="completeTask(currentTask)">Complete task</a>
     <div class="item">
       <div class="ui checkbox">
         <input type="checkbox" name="on_call">
         <label>On the call</label>
       </div>
+      
       <!-- <div class="ui toggle checkbox">
         <input type="checkbox" name="gift">
         <label>On the call</label>
