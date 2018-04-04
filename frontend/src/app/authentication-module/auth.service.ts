@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router }      from '@angular/router';
 
 import { HttpConnectionService } from '../services/http-connection.service';
 
@@ -7,6 +8,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/delay';
+import { UserService } from './user.service';
 
 
 @Injectable()
@@ -17,21 +19,32 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
-    private httpConnection: HttpConnectionService
+    private httpConnection: HttpConnectionService,
+    private userService: UserService,
+    private router: Router
   ) { }
 
   isLoggedIn () {
-    let token = localStorage.getItem('app-token');
-    return token != '';
+    let user = this.userService.getUser();
+    if(user) { return user.token != '' }
+    return false;
   }
 
-  login(username, password): Observable<any> {
+  login(username, password) {
     let user = { 'username': username, 'password': password };
-    return this.http.post(this.EXTENDED_URL, user);
+    this.http.post(this.EXTENDED_URL, user)
+      .subscribe(res => {
+        let tokenJSONText = JSON.stringify(res);
+        let tokenJSON = JSON.parse(tokenJSONText);
+        this.userService.login(tokenJSON.token);
+        if (this.isLoggedIn) {
+          this.router.navigate([this.redirectUrl]);
+        }
+    });
   }
 
   logout(): void {
-    localStorage.setItem('app-token', '');
+    localStorage.setItem('app-user', '');
   }
 
 }

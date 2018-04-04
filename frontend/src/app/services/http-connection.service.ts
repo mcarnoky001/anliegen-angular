@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { UserService } from '../authentication-module/user.service';
 
 @Injectable()
 export class HttpConnectionService {
 
   ROOT_URL = 'http://localhost:8000/';
 
-  constructor() { }
+  constructor(private userService: UserService) { }
 
   getHttpOptions() {
     return {
@@ -19,7 +20,8 @@ export class HttpConnectionService {
   }
 
   getToken() {
-    return localStorage.getItem('app-token');
+    let token = this.userService.getToken();
+    return token;
   }
 
 }
