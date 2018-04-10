@@ -83,5 +83,6 @@ class UserSerializer(serializers.ModelSerializer):
         fields = [
             'pk',
             'username', 
-            'email'
+            'email',
+            'groups',
         ]

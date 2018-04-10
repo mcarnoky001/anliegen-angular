@@ -172,15 +172,6 @@ class UserSkillRudView(generics.RetrieveUpdateDestroyAPIView):
         return UserSkill.objects.all()
 
 
-class UserAPIView(generics.ListAPIView):
-    lookup_field        = 'pk'
-    serializer_class    = UserSerializer
-
-    def get_queryset(self):
-        qs = User.objects.all()
-        return qs
-
-
 class UserView(generics.RetrieveAPIView):
     pass
     model       = User
@@ -222,3 +213,17 @@ class UserSkillView(generics.RetrieveAPIView):
             skillsArray.append(s.skill)
         data = serializers.serialize('json', list(skillsArray))
         return HttpResponse(data, content_type="application/json")
+
+class UsersAPIView(generics.ListAPIView):
+    lookup_field        = 'pk'
+    serializer_class    = UserSerializer
+
+    def get_queryset(self):
+        qs = User.objects.all()
+        query = self.request.GET.get("q")
+        group = self.request.GET.get("g")
+        if(query) is not None:
+            qs = qs.filter(Q(username__icontains=query)).distinct()
+        if(group) is not None:
+            qs = qs.filter(groups=group)
+        return qs

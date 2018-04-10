@@ -18,6 +18,7 @@ import { HttpConnectionService } from './services/http-connection.service';
 import { AuthenticationModule } from './authentication-module/authentication.module';
 import { ClearkModule } from './cleark-module/cleark.module';
 import { MessageModule } from './message/message.module';
+import { ManagementModule } from './management/management.module';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'cleark/currenttask', pathMatch: 'full'  },
@@ -36,7 +37,8 @@ const appRoutes: Routes = [
       HttpClientModule,
       AuthenticationModule,
       ClearkModule,
-      MessageModule
+      MessageModule,
+      ManagementModule
     ],
   declarations: [
     AppComponent,

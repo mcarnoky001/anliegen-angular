@@ -55,9 +55,9 @@
       <td (click)="clickTableRow(task)">
         <ng-container *ngIf="currentTask === task">
           <select class="ui dropdown"
-                  [(ngModel)]="task.blocker"
-                  *ngFor="let blocker of blockers">
-            <option [value]="blocker.name">{{ blocker.name }}</option>
+                  [(ngModel)]="task.blocker">
+            <option [value]="blocker.name"
+                    *ngFor="let blocker of blockers">{{ blocker.name }}</option>
           </select>
         </ng-container>
         <span *ngIf="!(currentTask === task)">{{ task.blocker }}</span>
@@ -93,9 +93,9 @@
         <td (click)="clickTableRow(task)">
           <ng-container *ngIf="currentTask === task">
               <select class="ui dropdown"
-                      [(ngModel)]="task.blocker"
-                      *ngFor="let blocker of blockers">
-                <option [value]="blocker.name">{{ blocker.name }}</option>
+                      [(ngModel)]="task.blocker">
+                <option [value]="blocker.name"
+                        *ngFor="let blocker of blockers">{{ blocker.name }}</option>
               </select>
             </ng-container>
           <span *ngIf="!(currentTask === task)">{{ task.blocker }}</span>
