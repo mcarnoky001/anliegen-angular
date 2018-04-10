@@ -23,6 +23,10 @@ export class UsersService {
     return this.http.get(url);
   }
 
+  getUser(id) {
+    let url = this.httpConnection.ROOT_URL + 'userbyid/' + id;
+    return this.http.get(url);
+  }
 
   
 

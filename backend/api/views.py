@@ -173,6 +173,19 @@ class UserSkillRudView(generics.RetrieveUpdateDestroyAPIView):
 
 
 class UserView(generics.RetrieveAPIView):
+    lookup_field        = 'pk'
+    serializer_class    = UserSerializer
+
+    def get_queryset(self):
+        qs = User.objects.all()
+        id = self.request.GET.get("id")
+        if(id) is not None:
+            qs = qs.filter(pk=id)
+        return qs
+
+
+
+class UserTokenView(generics.RetrieveAPIView):
     pass
     model       = User
     serializer_class    = UserSerializer
