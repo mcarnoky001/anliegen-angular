@@ -48,6 +48,7 @@ export class SubtaskTableComponent implements OnInit {
   }
 
   getSkills(subtask) {
+    this.userService.updateSkills();
     this.subtaskService.getSkillsForSubtask(subtask.pk)
       .subscribe(res => {
         let skills = res;
@@ -58,7 +59,7 @@ export class SubtaskTableComponent implements OnInit {
   appendSkills(skillsJSON, subtask) {
     subtask.skills = []
     skillsJSON.forEach(element => {
-      subtask.skills.push(element.fields.name);
+      subtask.skills.push(element.fields);   
     });
   }
 

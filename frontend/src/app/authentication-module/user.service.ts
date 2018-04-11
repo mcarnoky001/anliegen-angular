@@ -76,8 +76,8 @@ export class UserService {
     let userSkills = this.getUser().skills;
     let subtaskSkills = subtask.skills;
     let result = true;
-    subtaskSkills.forEach(element => {
-        if(userSkills.indexOf(element) == -1) result = false;
+    subtaskSkills.map(skill => skill.name).forEach(element => {    
+      if(userSkills.map(skill => skill.name).indexOf(element) == -1) result = false;
     });
     return result;
   }
