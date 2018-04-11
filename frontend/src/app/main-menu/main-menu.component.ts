@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router }      from '@angular/router';
 
 import { AuthService } from '../authentication-module/auth.service';
+import { UserService } from '../authentication-module/user.service';
 
 declare var $:any;
 
@@ -12,7 +13,9 @@ declare var $:any;
 })
 export class MainMenuComponent implements OnInit {
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router,
+    private userService: UserService
+  ) { }
 
   ngOnInit() {
     $('.ui.dropdown')
@@ -26,7 +29,7 @@ export class MainMenuComponent implements OnInit {
   }
 
   getUsername() {
-    return localStorage.getItem('app-username');
+    return this.userService.getUsername();
   }
 
 }

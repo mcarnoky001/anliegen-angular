@@ -227,6 +227,32 @@ class UserSkillView(generics.RetrieveAPIView):
         data = serializers.serialize('json', list(skillsArray))
         return HttpResponse(data, content_type="application/json")
 
+
+class UserSkillDeleteView(generics.RetrieveAPIView):
+    model       = UserSkill
+    serializer_class    = UserSkillSerializer
+
+    def retrieve(self, request, pk=None):
+        user_id = self.request.GET.get('user')
+        skill_id = self.request.GET.get('skill')
+        skill = UserSkill.objects.get(user_id=user_id, skill_id=skill_id)
+        skill.delete()
+        return JsonResponse({'success': 'success'})
+
+
+class UserSkillCreateView(generics.RetrieveAPIView):
+    model       = UserSkill
+    serializer_class    = UserSkillSerializer
+
+    def retrieve(self, request, pk=None):
+        user_id = self.request.GET.get('user')
+        skill_id = self.request.GET.get('skill')
+        try:
+            skill = UserSkill.objects.get(user_id=user_id, skill_id=skill_id)
+        except UserSkill.DoesNotExist:
+            skill = UserSkill.objects.create(user_id=user_id, skill_id=skill_id)          
+        return JsonResponse({'success': 'success'})
+
 class UsersAPIView(generics.ListAPIView):
     lookup_field        = 'pk'
     serializer_class    = UserSerializer

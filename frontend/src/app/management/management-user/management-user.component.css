@@ -1,0 +1,7 @@
+.ui.button {
+    width: 200px!important;
+}
+
+.ui.list:first-child {
+    margin-top: 1em;
+}

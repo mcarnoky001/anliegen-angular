@@ -39,10 +39,24 @@ export class UserService {
     let user = this.getUser();
     user.skills = [];
     res.forEach(element => {
-        console.log(element);
-        user.skills.push(element.fields.name);
+        user.skills.push(element.fields);
     });
     this.saveUser(user);
+  }
+
+  updateSkills() {
+    let user = this.getUser();
+    if(user) {
+      this.getSkillsForUser(user.pk)
+        .subscribe(res => {
+            this.saveSkills(res);               
+        });
+    }
+  }
+
+  getSkills() {
+    let user = this.getUser();
+    return user ? user.skills : [];
   }
 
   getSkillsForUser(id) {
@@ -74,7 +88,12 @@ export class UserService {
 
   getToken() {
     let user = this.getUser();
-    return user.token;
+    return user ? user.token : '';
+  }
+
+  getUsername() {
+    let user = this.getUser();
+    return user ? user.username : '';
   }
 
 }

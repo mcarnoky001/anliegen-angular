@@ -24,6 +24,16 @@ export class SkillService {
     }
   }
 
+  userSkillCreate(user, skill) {
+    let url = this.httpConnection.ROOT_URL + `userskillcreate?user=${user}&skill=${skill}`;
+    return this.http.get(url);    
+  }
+
+  userSkillDelete(user, skill) {
+    let url = this.httpConnection.ROOT_URL + `userskilldelete?user=${user}&skill=${skill}`;
+    return this.http.get(url);    
+  }
+
   getSkills(searchQuery: String): Observable<{}> {
     return this.http.get(this.EXTENDED_URL + '?q=' + searchQuery);
   }

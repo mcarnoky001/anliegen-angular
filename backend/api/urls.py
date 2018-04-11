@@ -21,6 +21,8 @@ urlpatterns = [
     path('subtaskskills/', views.SubtaskSkillView.as_view(), name='subtaskskill_api'),
     re_path(r'^userskills/(?P<pk>\d+)/$', views.UserSkillRudView.as_view(), name='userskill_rud'),
     path('userskills/', views.UserSkillView.as_view(), name='userskill_api'),
+    path('userskilldelete/', views.UserSkillDeleteView.as_view(), name='userskilldelete_api'),
+    path('userskillcreate/', views.UserSkillCreateView.as_view(), name='userskillcreate_api'),
     path('userskillsrud/', views.UserSkillAPIView.as_view(), name='userskillrud_api'),
 ]
 

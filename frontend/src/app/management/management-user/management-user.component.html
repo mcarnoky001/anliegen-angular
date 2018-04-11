@@ -1,8 +1,28 @@
 <div class="ui secondary menu">
-    <div class="item" *ngIf="user"><h2>{{ user.username }}</h2></div>
-    <div class="right menu">
-      <div class="ui icon input item">
-        
+  <div class="item" *ngIf="user"><h2>{{ user.username }}</h2></div>
+  <div class="right menu">
+    <a class="ui button blue item" routerLink="/management/users">Back</a>
+  </div>
+</div>
+
+<div class="ui grid">
+
+  <div class="ui list six wide column">
+    <div class="item"  *ngFor="let skill of userSkills">
+      <div class="ui button blue" (click)="userSkillDelete(skill.pk)">
+        {{ skill.fields.name }}
+        <i class="ui icon minus right"></i>
       </div>
     </div>
   </div>
+
+  <div *ngIf="skills" class="ui list six wide column">
+    <div class="item"  *ngFor="let skill of skills">
+      <div class="ui button blue" (click)="userSkillCreate(skill.pk)">
+        {{ skill.name }}
+        <i class="ui icon plus right"></i>
+      </div>
+    </div>
+  </div> 
+
+</div>

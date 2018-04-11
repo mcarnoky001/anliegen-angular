@@ -19,6 +19,7 @@ import { AuthenticationModule } from './authentication-module/authentication.mod
 import { ClearkModule } from './cleark-module/cleark.module';
 import { MessageModule } from './message/message.module';
 import { ManagementModule } from './management/management.module';
+import { SkillService } from './services/skill.service';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'cleark/currenttask', pathMatch: 'full'  },
@@ -50,6 +51,6 @@ const appRoutes: Routes = [
     MainMenuComponent
   ],
   bootstrap:    [ AppComponent ],
-  providers: [HttpConnectionService]
+  providers: [HttpConnectionService, SkillService]
 })
 export class AppModule { }

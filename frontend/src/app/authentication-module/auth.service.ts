@@ -27,7 +27,7 @@ export class AuthService {
   isLoggedIn () {
     let user = this.userService.getUser();
     if(user) { return user.token != '' }
-    return false;
+    return true;
   }
 
   login(username, password) {
